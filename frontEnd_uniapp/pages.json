@@ -1,0 +1,163 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/timeTable/timeTable",
+			"style": {
+				"navigationBarTitleText": "课程表",
+				"enablePullDownRefresh":true
+			}
+		}
+	    ,{
+            "path" : "pages/home/map/map",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "地图",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/settings/settings",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/home",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "首页",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/settings/addCourse/addCourse",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加课程",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/englishLearn/englishLearn",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "英语专栏",
+                "enablePullDownRefresh": true,
+				"onReachBottomDistance":0
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/englishLearn/reciteWords/reciteWords",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "单词表",
+                "enablePullDownRefresh": true,
+				"onReachBottomDistance":0
+            }
+            
+        }
+        ,{
+            "path" : "pages/settings/usingInstruction/usingInstruction",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "使用教程",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/settings/version/version",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "系统信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/settings/myHomepage/myHomepage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的主页",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/campusNews/campusNews",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "校园资讯",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/memorandum/memorandum",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "备忘录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "音符课程表",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus":{
+			"titleNView":{
+				"buttons":[
+					{
+						"text":"退出",
+						"type":"close",
+						"float":"right",
+						"fontSize":"20px",
+						"margin-right":"10px",
+						"color":"#000000"
+					},
+					{
+						"text":"主页",
+						"type":"home",
+						"float":"left",
+						"fontSize":"20px",
+						"margin-left":"10px",
+						"color":"#000000"
+					}
+				]
+			}
+		}
+		
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#00ff7f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/home/home",
+			"iconPath": "static/home.png",
+			"selectedIconPath": "static/home1.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/timeTable/timeTable",
+			"iconPath": "static/schedule.png",
+			"selectedIconPath": "static/schedule1.png",
+			"text": "课表"
+		}, {
+			"pagePath": "pages/settings/settings",
+			"iconPath": "static/settings.png",
+			"selectedIconPath": "static/settings1.png",
+			"text": "设置"
+		}]
+	}
+}
