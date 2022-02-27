@@ -13,31 +13,31 @@
 			</view>
 		</view>
 		
-		<view class="swiperContent">
-			<view class="page-section-spacing">
-				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-					<swiper-item v-for="i in banner.length" :key="i">
-						<image class="swiper-item" @click="selectPoster" :src="banner[i-1]"></image>
-					</swiper-item>
-				</swiper>
-			</view>
+		<view class="u-block" style="marginTop: 70px">
+			<u-swiper
+				:list="banner"
+				:circular="true"
+				:autoplay="true"
+				previousMargin="30"
+				nextMargin="30"
+				radius="5"
+				bgColor="#ffffff"
+				@click="selectPoster">
+			</u-swiper>
 		</view>
 		
-		<!-- 今日上新 -->
-		<view class="tips-text-wrap margin-line new-today">
-			<view class="left-wrap">
-				<image class="tip-img" src="../../../static/hairMall_select.png"></image>
-				<text class="tip-text">今日上新</text>
-			</view>
-			<image :animation="animationData" @click="move" class="right-wrap" src="../../../static/up_arrow.png"></image>
-		</view>
-		<scroll-view v-if="show==true" class="today-wrap" scroll-x="true">
-			<image class="card-wrap"
-					v-for="i in 10" 
-					:key="i"
-					src="../../../static/new_today.jpeg"
-					@click="selectNew(i)"></image>
-		</scroll-view>
+		<u-collapse accordion >
+			<u-collapse-item title="今日上新" icon="gift">
+				<u-icon name="gift" size="32" slot="icon" color="#ff5500"></u-icon>
+				<scroll-view class="today-wrap" scroll-x="true">
+					<image class="card-wrap"
+							v-for="i in 10" 
+							:key="i"
+							src="../../../static/new_today.jpeg"
+							@click="selectNew(i)"></image>
+				</scroll-view>
+			</u-collapse-item>
+		</u-collapse>
 		
 		<!-- API按钮接口 -->
 		<view class="APIset">
@@ -115,16 +115,13 @@
 				interval: 5000,
 				duration: 500,
 				
-				degree: 1,
-				show: true,
-				
 				//图片
 				recommandHair:["../../../static/kid.png","../../../static/kid2.png",
 						"../../../static/head_man1.png","../../../static/head_man2.png"],
 					
 				nick: "兔子一号",
 				
-				animationData: {}
+				barHeight: 30,
 			}
 		},
 		//导航栏按钮点击事件
@@ -162,27 +159,14 @@
 					_this.$u.toast("无法获取您的网络状态");
 				},
 			});
+			
+			uni.getSystemInfo({
+				success(res) {
+					_this.barHeight=res.statusBarHeight
+				}
+			});
 		},
 		methods: {
-			move() {
-				var animation = uni.createAnimation({
-					duration: 200,
-					timingFunction: 'linear',
-				})
-				if(this.degree==0){
-					animation.rotate(0).step()
-					this.show=true;
-					this.degree=1;
-				}
-				else{
-					this.$u.toast("隐藏新品")
-					animation.rotate(180).step()
-					this.show=false;
-					this.degree=0;
-				}
-				this.animationData = animation.export()
-			},
-			
 			//我的右侧按钮
 			myInfo(type){
 				if(type==1){
@@ -315,27 +299,6 @@
 		margin-right: 3px;
 		width:64rpx;
 		height: 64rpx;
-	}
-	
-	//banner
-	.swiperContent{
-		margin-top: 70px;
-		background-color: #f3f2f0;
-		padding-bottom: 10px;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-	.page-section-spacing{	//不能直接对swiper的父亲组件进行对齐方式更改,会出错
-		width: 80%;
-		margin-top: 10px;
-	}
-	.swiper-item{
-		background-color: #fff1cd;
-		border-radius: 5px;
-		width: 100%;
-		height: 100%;
-		text-align: center;
 	}
 	
 	/* 推荐 */
