@@ -1,0 +1,9 @@
+{
+    "id": "xiaoming-three",
+    "name": "3D户型图展示",
+    "version": "1.0.0",
+    "description": "简单的使用three，引用图片作为地面。3D图形的旋转。",
+    "keywords": [
+        "webGL,three,3d"
+    ]
+}

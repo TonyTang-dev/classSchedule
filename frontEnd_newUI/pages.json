@@ -1,0 +1,414 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// {
+		//     "path" : "pages/myApp/myApp",
+		//     "style" : {
+		// 		"navigationBarTitleText": "我的APP"
+		// 	}
+		// },
+		{
+			"path": "pages/navigate_page/Home/home",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": {
+					"titleNView": false
+					// {
+					// 	"buttons": [
+					// 		// {
+					// 		// 	"text": "退出",
+					// 		// 	"color":"#2B85E4",
+					// 		// 	// "fontSrc": "/static/1.png",
+					// 		// 	"fontSize": "12px",
+					// 		// 	"float": "left"
+					// 		// },
+					// 		{
+					// 			"text": "预约",
+					// 			"color":"#2B85E4",
+					// 			// "fontSrc": "/static/post.png",
+					// 			"fontSize": "12px",
+					// 			"float":"right"
+					// 		}
+					// 	]
+					// }
+					// "titleNView": {
+					// 	"type":"default",
+					// 	"backgroundColor":"#2688DE",
+					// 	"searchInput":{
+					// 		"backgroundColor":"#66C6E8",
+					// 		"borderRadius":"14px",
+					// 		"placeholder":"输入产品名称或编码",
+					// 		"placeholderColor":"#fff",
+					// 		"align":"center",
+					// 		"disabled":true//划重点！！！
+					// 	}
+					// }
+				}
+			}
+		},
+		{
+			"path": "pages/login_regist/login/login",
+			"style": {
+				// "navigationBarTextStyle": "#ff5500",
+				"navigationBarTitleText": "登录",//#f0f0f0
+				// "navigationBarBackgroundColor": "#f0f0f0",
+				"navigationBarBackgroundColor":"rgba(0,0,0,0)",
+				"navigationBarTextStyle":"white",
+				"app-plus":{
+					"titleNView":false 
+				}
+			}
+		},
+	    {
+            "path" : "pages/hair_3Dshow/hair_3Dshow",
+            "style" : {
+				"navigationBarTitleText":"我的3D查看",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/login_regist/regist/regist",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/navigate_page/hairMall/TakePicture/takePicture",
+            "style" : {
+				"navigationBarTitleText": "选择美照",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+							{
+								"text": "相册",
+								"color":"#2B85E4",
+								// "fontSrc": "/static/post.png",
+								"fontSize": "12px",
+								"float":"right"
+							}
+						]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/mine",
+            "style" : {
+				"navigationBarBackgroundColor":"rgba(0,0,0,0)",
+				"navigationBarTextStyle":"white",
+				"app-plus":{
+					"titleNView":false
+					// {
+					// 	"type":"float",
+						
+					// 	"buttons": [
+					// 		{
+					// 			"text": "我的",
+					// 			// "text":"\ue532",
+					// 			"color":"#ff5500",
+					// 			// "fontSrc": "/static/post.png",
+					// 			"fontSize": "12px",
+					// 			"float":"right"
+					// 		}
+					// 	]
+					// }
+				}
+			}
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myData",
+            "style" : {
+				"backgroundColor":"#53ACD5"
+			}
+        }
+        ,{
+            "path" : "pages/login_regist/login/forgetPassword/forgetPassword",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/navigate_page/Home/measuringFace/measuringFace",
+            "style" : {
+				"navigationBarTitleText":"脸型分析",
+				// "navigationStyle":"custom",
+				// "navigationBarBackgroundColor":"rgba(0,0,0,0)",
+				// "navigationBarTextStyle":"white",
+				"app-plus": {
+					"titleNView": {
+						"type": "float",
+						"titleText": "过程分析"
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/navigate_page/Home/changeHairStyle/changeHairStyle",
+            "style" : {
+				"navigationBarTitleText":"换发型",
+				
+				"app-plus":{
+					"titleNView": {
+						"buttons": [
+							{
+								"text": "保存",
+								"color":"Black",
+								// "fontSrc": "/static/post.png",
+								"fontSize": "12px",
+								"float":"right"
+							}
+						]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/navigate_page/hairMall/hairMall",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发型广场",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/Home/cartoonFace/cartoonFace",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "漫画脸",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"rgba(0,0,0,0)",
+				"navigationBarTextStyle":"white",
+				"app-plus": {
+					"titleNView": {
+						"type": "float"
+						// "titleText": "过程分析"
+					}
+				}
+            }
+            
+        }
+        
+        ,{
+            "path" : "pages/navigate_page/Home/hairCommunity/hairCommunity",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发型社区",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/Home/hairCommunity/hairDetail/hairDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"rgba(255, 255, 255, 0.0)",
+				"navigationBarTextStyle":"white",
+				"app-plus": {
+					"titleNView": false
+					// {
+					// 	"type": "float"
+					// 	// "titleText": "过程分析"
+					// }
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/myHomePage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的主页",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/changeHead_icon/changeHead_icon",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置个人头像",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/mySignature/mySignature",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个性签名",
+                "enablePullDownRefresh": false,
+				
+				"app-plus":{
+					"titleNView": {
+						"buttons": [
+							{
+								"text": "保存",
+								"color":"Black",
+								// "fontSrc": "/static/post.png",
+								"fontSize": "15px",
+								"float":"right"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/editMyData/editMyData",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人资料",
+                "enablePullDownRefresh": false,
+				
+				"app-plus":{
+					"titleNView":{
+						"buttons":[
+							{
+								"text": "隐私政策",
+								"color":"#000000",
+								"fontSize" : "15px",
+								"float":"float"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/editMyData/myCode/myCode",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的名片",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myService/myService",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的客服",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#1482d1",
+				"backgroundColor": "#1482d1"
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/editMyData/myNick/myNick",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改昵称",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView":{
+						"buttons":[
+							{
+								"text": "保存",
+								"color":"#000000",
+								"fontSize" : "15px",
+								"float":"float"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myData/myHomePage/myDynamic/myDynamic",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的动态",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView":{
+						"buttons":[
+							{
+								"text": "拍照",
+								"color":"#000000",
+								"fontSize" : "15px",
+								"float":"float"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/myVersion/myVersion",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "系统版本",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/shareAPP/shareAPP",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "分享应用",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/navigate_page/mine/aboutUs/aboutUs",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于我们",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",//#f0f0f0
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#909399",
+	    "selectedColor": "#303133",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/navigate_page/Home/home",
+	        "iconPath": "static/home.png",
+	        "selectedIconPath": "static/home_select.png",
+	        "text": "我的主页"
+	    },
+		{
+		    // "pagePath": "pages/navigate_page/hair_3Dshow/hair_3Dshow",
+			"pagePath":"pages/hair_3Dshow/hair_3Dshow",
+		    "iconPath": "static/hairMall.png",
+		    "selectedIconPath": "static/hairMall_select.png",
+		    "text": "发型广场"
+		},
+		{
+		    "pagePath": "pages/navigate_page/mine/mine",
+		    "iconPath": "static/mine1.png",
+		    "selectedIconPath": "static/mine2.png",
+		    "text": "我的信息"
+		}]
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

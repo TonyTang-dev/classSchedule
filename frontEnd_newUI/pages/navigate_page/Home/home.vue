@@ -1,0 +1,485 @@
+<template>
+    <view>
+		<!-- 左侧菜单栏 -->
+		<leftMenu></leftMenu>
+		
+		<!-- 右上角按钮 -->
+		<view class="statusBar">
+			<view class="myInfo-wrap">
+				<view class="info-wrap">
+					<image class="drawer-head-menu" @click="myInfo(1)" src="../../../static/myInfo.png" mode="scaleToFill" />
+					<image class="drawer-head-menu" @click="myInfo(2)" src="../../../static/add.png" mode="scaleToFill" />
+				</view>
+			</view>
+		</view>
+		
+		<view class="swiperContent">
+			<view class="page-section-spacing">
+				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+					<swiper-item v-for="i in banner.length" :key="i">
+						<image class="swiper-item" @click="selectPoster" :src="banner[i-1]"></image>
+					</swiper-item>
+				</swiper>
+			</view>
+		</view>
+		
+		<!-- 今日上新 -->
+		<view class="tips-text-wrap margin-line new-today">
+			<view class="left-wrap">
+				<image class="tip-img" src="../../../static/hairMall_select.png"></image>
+				<text class="tip-text">今日上新</text>
+			</view>
+			<image :animation="animationData" @click="move" class="right-wrap" src="../../../static/up_arrow.png"></image>
+		</view>
+		<scroll-view v-if="show==true" class="today-wrap" scroll-x="true">
+			<image class="card-wrap"
+					v-for="i in 10" 
+					:key="i"
+					src="../../../static/new_today.jpeg"
+					@click="selectNew(i)"></image>
+		</scroll-view>
+		
+		<!-- API按钮接口 -->
+		<view class="APIset">
+			<view class="tips-text-wrap">
+				<image class="tip-img" src="../../../static/add.png"></image>
+				<text class="tip-text">应用推荐</text>
+			</view>
+			<view class="APIRow">
+				<view v-for="i in [0,1,2,3]" :key='i' class="temp-wrap">
+					<view class="button-icon-temp" @click="clickAPI(i)">
+						<view class="button-icon">
+							<image class="button" :src="icon[i]"></image>
+							<text class="APIname">{{APIname[i]}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="APIRow">
+				<view v-for="j in [4,5,6,7]" :key='j' class="temp-wrap">
+					<view class="button-icon-temp">
+						<view class="button-icon" @click="clickAPI(j)">
+							<image class="button" :src="icon[j]"></image>
+							<text class="APIname">{{APIname[j]}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="tips-text-wrap margin-line">
+			<image class="tip-img" src="../../../static/hairMall_select.png"></image>
+			<text class="tip-text">发型推荐</text>
+		</view>
+		<view v-for="i in 10" :key="i" style="display: flex; flex-direction: row; margin-top:10px;">
+			<view class="recommand">
+				<image class="recommand_img" @click="clickPost" :src="recommandHair[(i)%4]"></image>
+				<view class="tips-date">
+					<text class="userCount">120人使用</text>
+					<text class="clickTry" @click="clickTry">点击试戴</text>				
+				</view>
+			</view>
+			<view class="recommand">
+				<image class="recommand_img" @click="clickPost" :src="recommandHair[(i+2)%4]"></image>
+				<view class="tips-date">
+					<text class="userCount">12人使用</text>
+					<text class="clickTry" @click="clickTry">点击试戴</text>				
+				</view>
+			</view>
+		</view>
+		
+		
+		<!-- 版权 -->
+		<view class="copyright">
+			<text>@Copyright Of 3D小组</text>
+		</view>
+    </view>
+</template>
+
+<script>
+	//导入左侧菜单
+	import leftMenu from "../../swipeTab/leftMenu.vue";
+	
+	export default {
+		data() {
+			return {
+				icon: ['../../../static/schedule1.png', '../../../static/newsAPI.png', '../../../static/map.png',
+					'../../../static/memory.png','../../../static/english.png','../../../static/settingsAPI.png'
+					,'../../../static/schedule1.png','../../../static/settingsAPI.png'],
+				APIname:['发型设计','测脸型','换发型','换刘海','发型社区','贴纸','配饰','漫画脸'],
+				
+				//banner
+				banner: ["../../../static/banner3.png","../../../static/banner4.png"],
+				indicatorDots: true,
+				autoplay: true,
+				interval: 5000,
+				duration: 500,
+				
+				degree: 1,
+				show: true,
+				
+				//图片
+				recommandHair:["../../../static/kid.png","../../../static/kid2.png",
+						"../../../static/head_man1.png","../../../static/head_man2.png"],
+					
+				nick: "兔子一号",
+				
+				animationData: {}
+			}
+		},
+		//导航栏按钮点击事件
+		onNavigationBarButtonTap(button) {
+			// uni.showToast({
+			// 	title:button.text=="预约"?"点击预约":"点击退出",
+			// 	icon:"none"
+			// })
+			// if(button.text="退出"){
+			// 	uni.redirectTo({
+			// 		url:"../../login_regist/login/login",
+			// 	})
+			// }
+		},
+		// onNavigationBarSearchInputClicked(e) {
+		// 	console.log('点击了搜索框')
+		// },
+
+		onLoad(){
+			var _this=this
+				
+			uni.getNetworkType({//获取网络状态
+				success(res) {
+					if(res.networkType=="none"){
+						_this.$u.toast("网络连接失败")
+					}
+					// else if(res.networkType=="unknown"){
+					// 	// _this.$u.toast("您处于未知网络环境中");
+					// }
+					// else{
+					// 	// _this.$u.toast("您处于网络环境中");
+					// }
+				},
+				fail(e) {
+					_this.$u.toast("无法获取您的网络状态");
+				},
+			});
+		},
+		methods: {
+			move() {
+				var animation = uni.createAnimation({
+					duration: 200,
+					timingFunction: 'linear',
+				})
+				if(this.degree==0){
+					animation.rotate(0).step()
+					this.show=true;
+					this.degree=1;
+				}
+				else{
+					this.$u.toast("隐藏新品")
+					animation.rotate(180).step()
+					this.show=false;
+					this.degree=0;
+				}
+				this.animationData = animation.export()
+			},
+			
+			//我的右侧按钮
+			myInfo(type){
+				if(type==1){
+					this.$u.toast("点击了右侧状态按钮");
+				}
+				else if(type==2){
+					this.$u.toast("点击了右侧预约按钮");
+				}
+			},
+			
+			//轮播图点击事件
+			selectPoster(){
+				uni.showToast({
+					title:"点击广告页",
+					icon:"none"
+				})
+			},
+			//API按钮点击事件
+			clickAPI(func){
+				var _this=this;
+				_this.$u.toast("点击功能"+(_this.APIname[func]));
+				// return;	//先直接杀掉函数，后期改
+				// if(func!=0 && func != 1 && func!=3 && func!=4 && func != 7){
+				// 	return;
+				// }
+				switch(func){
+					case 0:
+						// return;
+						uni.navigateTo({
+							url:"../hairMall/TakePicture/takePicture",
+						});
+						break;
+					case 1:
+						// return;
+						uni.navigateTo({
+							url:'measuringFace/measuringFace',
+						});
+						break;
+					case 2:
+						_this.$u.toast("点击功能"+(func+1));
+						return;
+						uni.navigateTo({
+							url:'map/map',
+						});
+						break;
+					case 3:
+						uni.navigateTo({
+							url:'../../test/test',
+						});
+						break;
+					case 4:
+						uni.navigateTo({
+							url:'hairCommunity/hairCommunity',
+						});
+						break;
+					case 5:
+						_this.$u.toast("点击功能"+(func+1));
+						return;
+						uni.switchTab({
+							url:'../settings/settings',
+						});
+						break;
+					case 6:
+					
+						break;
+					case 7:
+						uni.navigateTo({
+							url:'./cartoonFace/cartoonFace',
+						});
+						break;
+				}
+				
+			},
+			//点击推荐
+			clickPost(){
+				uni.navigateTo({
+					url: 'hairCommunity/hairDetail/hairDetail'
+				});
+				return;
+			},
+			
+			clickTry(){
+				this.$u.toast("点击了试戴");
+			},
+			
+			// 选择新品
+			selectNew(index){
+				this.$u.toast("选择新品"+index)
+			}
+		},
+		
+		//组件注册
+		components:{
+			leftMenu,
+		}
+	}
+</script>
+
+<style>
+	//状态栏
+	.statusBar{
+		width: 100%;
+		height: 70px;
+		position: fixed;
+		top: 0;
+		background-color: #ffffff;
+		z-index: 998;
+	}
+	//右上角按钮
+	.myInfo-wrap{
+		display: inline-block;
+		position: fixed;
+		top: 70rpx;
+		right: 10rpx;
+		/* z-index: 998; */
+	}
+	.info-wrap{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.drawer-head-menu{
+		/* display: inline-block;
+		position: fixed; */
+		border-radius: 50%;
+		/* top: 6px;
+		left: 10px; *//* 
+		z-index: 999; */ 
+		margin-right: 3px;
+		width:64rpx;
+		height: 64rpx;
+	}
+	
+	//banner
+	.swiperContent{
+		margin-top: 70px;
+		background-color: #f3f2f0;
+		padding-bottom: 10px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	.page-section-spacing{	//不能直接对swiper的父亲组件进行对齐方式更改,会出错
+		width: 80%;
+		margin-top: 10px;
+	}
+	.swiper-item{
+		background-color: #fff1cd;
+		border-radius: 5px;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
+	
+	/* 推荐 */
+	.recommand{
+		width: 50%;
+		margin: 10rpx;
+		height: 200px;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		box-shadow: 0px 0px 0px 2px #f0f0f0;
+	}
+	
+	.schedule-today{
+		flex-direction: 1;
+		width: 20px;
+		height: 20px;
+	}
+	.tips-date{
+		font-size: 14px;
+		display: flex;
+		flex-direction: row;
+		padding-left: 10px;
+		padding-top: 3px;
+		z-index: 2;
+	}
+	.clickTry{
+		flex: 1;
+		height: 1.5em;
+		text-align: center;
+		text-align: right;
+		padding-right: 10px;
+		border-radius: 5px;
+		background-color: #ff5500;
+	}
+	.userCount{
+		flex: 1;
+		font-size: 12px;
+	}
+	.recommand_img{
+		width: 100%;
+		height: 90%;
+		border-radius: 10px;
+	}
+	
+	/* API按钮 */
+	.APIset{
+		margin-top: 30rpx;
+		/* height: 200rpx; //因为我需要控件自适应，所以就不固定高度了，空间大小通过子控件的css来设定*/
+		box-shadow: 0px 0px 0px 2px #f0fff2;
+	}
+	.APIRow{
+		height: 130rpx;
+		/* flex: 1; */
+		margin-top: 20px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	.temp-wrap{
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.button-icon-temp{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	.button-icon{
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.button{
+		width: 32px;
+		height: 32px;
+	}
+	.APIname{
+		font-size: 14px;
+	}
+	
+	/* 版权 */
+	.copyright{
+		font-size: .7em;
+		color: #999791;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		margin-top: 15px;
+	}
+	
+	/* 功能提示文字 */
+	.tips-text-wrap{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-left: 5rpx;
+		/* justify-content: center; */
+	}
+	.tip-img{
+		width: 16px;
+		height: 16px;
+	}
+	.tip-text{
+		font-size: 14px;
+		font-weight: bold;
+		margin-left: 5rpx;
+	}
+	.margin-line{
+		margin-top: 20rpx;
+	}
+	.new-today{
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	/* 收拢箭头 */
+	.left-wrap{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	.right-wrap{
+		width: 16px;
+		height: 8px;
+		margin-right: 10rpx;
+	}
+	
+	/* 今日上新 */
+	.today-wrap{
+		display: flex;
+		flex-direction: row;
+		white-space: nowrap;
+		margin-left: 10rpx;
+		margin-top: 5rpx;
+	}
+	.card-wrap{
+		display: inline-block;
+		width: 128rpx;
+		height: 128rpx;
+		border-radius: 10%;
+		margin: 5rpx;
+		/* background-color: #FF5500; */
+	}
+</style>
