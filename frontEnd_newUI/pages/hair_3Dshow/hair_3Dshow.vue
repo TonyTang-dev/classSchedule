@@ -4,8 +4,8 @@
 			<view v-for="index in 8" :key="index" :class="{'table-header-item':index!==1,'table-header-item-left':index==1}">
 				<view class="header-item-wrap">
 					<view v-if="index==1" class="monthTag">
-						<view>2</view>
-						<view>月</view>
+						<view style="width: 100%;">2</view>
+						<view style="width: 100%;">月</view>
 					</view>
 					<view v-else :class="{'weekDay':true,'todayTag':index==3}">
 						<view>
@@ -207,10 +207,12 @@
 
 	.table-header {
 		display: flex;
+		flex-direction: row;
 		text-align: center;
 		font-size: .7em;
 		border: #E4E7ED .1rpx solid;
-		padding: 10rpx;
+		padding-top: 10rpx;
+		padding-bottom: 10rpx;
 	}
 
 	.table {
@@ -220,7 +222,7 @@
 	}
 
 	.table-header-item {
-		flex: 2;
+		flex: 1;
 	}
 
 	.table-item-wrap {
@@ -231,10 +233,11 @@
 	.table-item-left-wrap {
 		background-color: #FFF4DD;
 		width: 30px;
+		height: 100%;
 	}
 
 	.table-header-item-left {
-		flex: 1;
+		/* flex: 1; */
 		width: 30px;
 	}
 
@@ -253,8 +256,9 @@
 		word-break: break-all;
 		overflow: hidden;
 		font-size: .7em;
-		padding: 1rpx;
+		/* padding: 1rpx; */
 		color: #ffe8dd;
+		font-weight: bold;
 		box-sizing: border-box;
 	}
 	.table-item2 {
@@ -277,8 +281,9 @@
 		box-sizing: border-box;
 	}
 	.monthTag{
-		width: 20px;
-		background-color: #ffffff;
+		width: 100%;
+		height: 100%;
+		font-weight: bold;
 	}
 	.table-item-left {
 		box-sizing: border-box;
