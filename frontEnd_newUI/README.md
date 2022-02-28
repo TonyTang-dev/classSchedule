@@ -5,6 +5,11 @@
 
 1、修改页面--课表部分
 
+2、重构课表
+
+![image](https://user-images.githubusercontent.com/81294772/156026300-b51baa75-ab3f-46d1-bf14-3f9602af69b2.png)
+
+
 
 0218：
 
