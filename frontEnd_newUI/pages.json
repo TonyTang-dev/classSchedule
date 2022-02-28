@@ -369,6 +369,18 @@
             }
             
         }
+        ,{
+            "path" : "pages/navigate_page/classTable/classTable",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus":{
+					"titleNView":false
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
