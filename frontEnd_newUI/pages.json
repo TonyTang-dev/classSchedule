@@ -401,10 +401,10 @@
 	    },
 		{
 		    // "pagePath": "pages/navigate_page/hair_3Dshow/hair_3Dshow",
-			"pagePath":"pages/hair_3Dshow/hair_3Dshow",
+			"pagePath":"pages/navigate_page/classTable/classTable",
 		    "iconPath": "static/hairMall.png",
 		    "selectedIconPath": "static/hairMall_select.png",
-		    "text": "发型广场"
+		    "text": "我的课表"
 		},
 		{
 		    "pagePath": "pages/navigate_page/mine/mine",

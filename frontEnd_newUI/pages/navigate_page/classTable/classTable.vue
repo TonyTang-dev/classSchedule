@@ -3,7 +3,7 @@
 		<view class="header-wrap" :style="{marginTop: barHeight+'px'}">
 			<view class="left-text">
 				<text class="month-text">{{month}}<br>月</text>
-				<view class="text-content" v-for="i in 7" :key="i">
+				<view :class="weeky==(i-1)?'text-content-today':'text-content'" v-for="i in 7" :key="i">
 					<text class="week-txt">{{week[i-1]}}</text>
 					<text class="date-txt">{{date[i-1]}}日</text>
 				</view>
@@ -18,18 +18,41 @@
 				<text class="time-text" v-for="i in [6,7,8,9,10,11]" :key="i">{{i}}</text>
 				<text class="time-text" >~</text>
 			</view>
-			<view class="class-item" v-for="i in 7" :key="i">
-				<view class="class-text" v-for="j in 2" :key="j" :style="{backgroundColor: colorList()[j]}">
-					<text class="class-name">{{classList[0].name[0]}}</text>
+			<view :class="weeky==(index)?'class-item-today':'class-item'" v-for="(item,index) in classList" :key="index">
+				<!-- 早上 -->
+				<view 
+					:class="[item.flex[j-1]==2?'class-text':'class-text-flex4']"
+					v-for="j in item.flex[0]" :key="j"
+					 :style="{backgroundColor: colorList()[item.id[j-1]]}" >
+					 <view class="classTip-wrap">
+						<text class="class-name">{{item.name[j-1]}}</text>
+						<text class="classroom-text">{{item.classroom[j-1]}}</text>
+					</view>
 				</view>
+				<!-- 中午 -->
 				<view class="class-text-noon">
 					<text class="class-name"></text>
 				</view>
-				<view class="class-text" v-for="k in [3,4]" :key="k" :style="{backgroundColor: colorList()[k]}">
-					<text class="class-name"></text>
+				<!-- 下午 -->
+				<view
+					:class="[item.flex[1]==2?'class-text':'class-text-flex4']"
+					v-for="j in item.flex[1]" :key="j+3"
+					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]]}" >
+					 <view class="classTip-wrap">
+						 <!-- 索引列表去得到下午的课程 -->
+						<text class="class-name">{{item.name[j-1+item.flex[0]]}}</text>
+						<text class="classroom-text">{{item.classroom[j-1+item.flex[0]]}}</text>
+					</view>
 				</view>
-				<view class="class-text-night" :style="{backgroundColor: colorList()[17]}">
-					<text class="class-name"></text>
+				<!-- 晚上 -->
+				<view
+					class="class-text-night"
+					 :style="{backgroundColor: colorList()[item.id[item.id.length-1]]}" >
+					 <view class="classTip-wrap">
+						 <!-- 索引列表去得到下午的课程 -->
+						<text class="class-name">{{item.name[item.name.length-1]}}</text>
+						<text class="classroom-text">{{item.classroom[item.name.length-1]}}</text>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -40,7 +63,10 @@
 	export default {
 		data() {
 			return {
+				test: true,
+				test2: false,
 				month: 1,
+				weeky: 1,
 				week: ['周一','周二','周三','周四','周五','周六','周日'],
 				date: [12,13,14,15,16,17,18],
 				windowHeight: 800,
@@ -48,14 +74,53 @@
 				
 				classList: [
 					{
-						name: ["操作系统","计算机网络"],
-						classroom: ["D1447","D1212"],
-						time: ["3-4","6-7"]
+						name: ['',"编译原理","数据库系统",'','企业法律风险管理'],
+						classroom: ['',"D1443","D1215",'','D1135'],
+						flex: [2,2,2],
+						time: ["3-4","6-7"],	//暂时未使用
+						id: [0,1,2,0,3]
 					},
 					{
-						name: ["Linux系统","计算机网络"],
-						classroom: ["D1137","D1212"],
-						time: ["1-2","11-13"]
+						name: ['',"传感器网络与原理","Linux操作系统",'',''],
+						classroom: ['',"D1443","D1447",'',''],
+						flex: [1,1,3],
+						time: ["1-2","11-13"],	//暂时未使用
+						id: [0,4,5,0,0]
+					},
+					{
+						name: ["","编译原理",'RFID原理及应用','',''],
+						classroom: ["","D1443",'D1445','',''],
+						flex: [2,2,2],
+						time: ["3-4","6-7"],	//暂时未使用
+						id: [0,1,6,0,0]
+					},
+					{
+						name: ["","数据库系统",'','',''],
+						classroom: ["","DZ312",'','',''],
+						flex: [2,2,2],
+						time: ["1-2","11-13"],	//暂时未使用
+						id: [0,2,0,0,0]
+					},
+					{
+						name: ['','','',"","传感器网络与原理"],
+						classroom: ['','','',"","硬件实验室DS3305"],
+						flex: [2,2,2],
+						time: ["3-4","6-7"],	//暂时未使用
+						id: [0,0,0,0,4]
+					},
+					{
+						name: ["","",'编译原理',''],
+						classroom: ["","",'硬件实验室DS3305',''],
+						flex: [2,1,2],
+						time: ["1-2","11-13"],	//暂时未使用
+						id: [0,0,1,0]
+					},
+					{
+						name: ["RFID原理及应用",'','',""],
+						classroom: ["DS3305",'','',""],
+						flex: [1,2,2],
+						time: ["3-4","6-7"],	//暂时未使用
+						id: [6,0,0,0]
 					},
 				]
 			}
@@ -76,16 +141,17 @@
 			
 			var date=new Date();
 			this.month=date.getMonth()+1;
+			this.weeky=date.getDay();
 		},
 		
 		methods: {
 			//返回颜色
 			colorList() {
 				return [
-					"#00CCFF", //0
-					"#8D4BBB", //1
+					"#ffffff", //0
+					"#ffaa00", //1
 					"#33CC99",
-					"#EF7A82", //3
+					"#ff5500", //3
 					"#789262", //4
 					"#66CCCC", //5
 					"#9999FF", //6
@@ -138,7 +204,21 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: 3rpx;
+		margin-top: 5rpx;
+		margin-left: 5rpx;
+		margin-right: 5rpx;
+	}
+	.text-content-today{
+		height: 100%;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-top: 5rpx;
+		margin-left: 5rpx;
+		margin-right: 5rpx;
+		background-color: #a5ffc9;
 	}
 	.week-txt{
 		width: 100%;
@@ -168,7 +248,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		background-color: #ffd7ff;
+		background-color: #ffe5ff;
 	}
 	.time-text{
 		width: 100%;
@@ -188,6 +268,17 @@
 		flex-direction: column;
 		align-items: center;
 		margin-left: 3rpx;
+		overflow: hidden;	//直接在父元素价格overflow就解决了flex
+	}
+	.class-item-today{
+		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-left: 3rpx;
+		overflow: hidden;	//直接在父元素价格overflow就解决了flex
+		background-color: #a5ffc9;
 	}
 	.class-text{
 		width: 100%;
@@ -196,7 +287,22 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: 3rpx;
+		margin-top: 5rpx;
+		margin-left: 5rpx;
+		margin-right: 5rpx;
+		border-radius: 10rpx;
+	}
+	.class-text-flex4{
+		width: 100%;
+		flex: 4;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-top: 5rpx;
+		margin-left: 5rpx;
+		margin-right: 5rpx;
+		margin-bottom: 5rpx;
 		border-radius: 10rpx;
 	}
 	.class-text-noon{
@@ -219,8 +325,19 @@
 		margin: 3rpx;
 		border-radius: 10rpx;
 	}
+	.classTip-wrap{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 	.class-name{
-		font-size: 16px;
+		font-size: 14px;
+		text-align: center;
+		color: #ffffff;
+	}
+	.classroom-text{
+		font-size: 12px;
 		text-align: center;
 		color: #ffffff;
 	}
