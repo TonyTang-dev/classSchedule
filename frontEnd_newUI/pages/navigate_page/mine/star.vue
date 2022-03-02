@@ -23,7 +23,7 @@
 			},
 			text:{
 				type: String,
-				default:"3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发3D焕发" //默认文字，长度不低于42
+				default:"CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表CQU课程表" //默认文字，长度不低于42
 			},
 			radius:{
 				type: Number,
@@ -261,7 +261,7 @@
 <style>
 	.scene {
 		width: 100%;
-		height: 200px;
+		height: 0px;
 		margin: 0 auto;
 		perspective: 900px;
 		-webkit-perspective: 900px;

@@ -75,14 +75,25 @@
 		
 		<view class="line" style="margin-top:15rpx;width: 100%;height:1px;backgroundColor: #9d9d9d"></view>
 		
+		<u-cell-group>
+			<u-cell
+				v-for="(item,index) in detailButton" :key="index"
+			    :title="item"
+				:icon="iconName[index]"
+				:iconStyle="{'color':iconColor[index]}"
+			    isLink
+				size="large"
+			    :url="detailUrl[index]"
+			></u-cell>
+		</u-cell-group>
 		
 		<!-- 注意事项等 -->
-		<view class="appDetail">
+		<!-- <view class="appDetail">
 			<view class="detailButton" v-for="i in [0,1,2,3,4,5]" :key="i" @click="clickDetail(i)">
 				<image class="buttonIcon" :src="buttonIcon[i]"></image>
 				<text class="buttonText">{{detailButton[i]}}</text>
 			</view>
-		</view>
+		</view> -->
 		
 		<!-- 版权 -->
 		<view class="copyright">
@@ -116,6 +127,10 @@
 				buttonIcon:['../../../static/myData.png','../../../static/introduction.png','../../../static/system.png',
 					'../../../static/introduction.png','../../../static/system.png','../../../static/introduction.png'],
 				detailButton:['我的资料','分享应用','关于我们','版本信息','我的客服','退出登录'],
+				iconName: ['account-fill','share','calendar','bookmark','server-man','info-circle'],
+				iconColor: ['#0000ff','#ff0000','#ffaa00','#ff0000','#ff007f','#5555ff'],
+				detailUrl:['./myData/myData','shareAPP/shareAPP','aboutUs/aboutUs',
+						'myVersion/myVersion','myService/myService',''],
 				
 				func: ['修改头像','修改昵称'],
 				
@@ -385,7 +400,7 @@
 	}
 	.minePage{
 		border-style: solid none solid solid;
-		border-radius: 10rpx;
+		border-radius: 10rpx 0 0 10rpx;
 		border-width: 1px;
 		border-color: #ffaaff;
 		color: #ffffff;

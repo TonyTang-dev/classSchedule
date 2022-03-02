@@ -3,7 +3,7 @@
 		<view class="header-wrap" :style="{marginTop: barHeight+'px'}">
 			<view class="left-text">
 				<text class="month-text">{{month}}<br>月</text>
-				<view :class="weeky==(i-1)?'text-content-today':'text-content'" v-for="i in 7" :key="i">
+				<view :class="weeky==(i)?'text-content-today':'text-content'" v-for="i in 7" :key="i">
 					<text class="week-txt">{{week[i-1]}}</text>
 					<text class="date-txt">{{date[i-1]}}日</text>
 				</view>
@@ -18,12 +18,13 @@
 				<text class="time-text" v-for="i in [6,7,8,9,10,11]" :key="i">{{i}}</text>
 				<text class="time-text" >~</text>
 			</view>
-			<view :class="weeky==(index)?'class-item-today':'class-item'" v-for="(item,index) in classList" :key="index">
+			<view :class="weeky==(index+1)?'class-item-today':'class-item'" v-for="(item,index) in classList" :key="index">
 				<!-- 早上 -->
 				<view 
 					:class="[item.flex[j-1]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[0]" :key="j"
-					 :style="{backgroundColor: colorList()[item.id[j-1]]}" >
+					 :style="{backgroundColor: colorList()[item.id[j-1]],opacity: item.id[j-1]==0?0:1}"
+					 @click="item.id[j-1]==0?null:clickClass(item,j-1)">
 					 <view class="classTip-wrap">
 						<text class="class-name">{{item.name[j-1]}}</text>
 						<text class="classroom-text">{{item.classroom[j-1]}}</text>
@@ -37,7 +38,7 @@
 				<view
 					:class="[item.flex[1]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[1]" :key="j+3"
-					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]]}" >
+					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]],opacity: item.id[j-1+item.flex[0]]==0?0:1}" >
 					 <view class="classTip-wrap">
 						 <!-- 索引列表去得到下午的课程 -->
 						<text class="class-name">{{item.name[j-1+item.flex[0]]}}</text>
@@ -47,7 +48,7 @@
 				<!-- 晚上 -->
 				<view
 					class="class-text-night"
-					 :style="{backgroundColor: colorList()[item.id[item.id.length-1]]}" >
+					 :style="{backgroundColor: colorList()[item.id[item.id.length-1]],opacity: item.id[item.id.length-1]==0?0:1}" >
 					 <view class="classTip-wrap">
 						 <!-- 索引列表去得到下午的课程 -->
 						<text class="class-name">{{item.name[item.name.length-1]}}</text>
@@ -56,6 +57,20 @@
 				</view>
 			</view>
 		</view>
+		
+		<u-modal :show="showMyModal"  title="课程详情" 
+						:closeOnClickOverlay="true" @confirm="closeModal" @close="closeModal">
+			<view class="slot-content">
+				<u-cell-group>
+					<u-cell
+						v-for="i in 3" :key="i"
+						title="老师+教室"
+						icon="search"
+						size="large"
+					></u-cell>
+				</u-cell-group>
+			</view>
+		</u-modal>
 	</view>
 </template>
 
@@ -63,8 +78,7 @@
 	export default {
 		data() {
 			return {
-				test: true,
-				test2: false,
+				showMyModal: false,
 				month: 1,
 				weeky: 1,
 				week: ['周一','周二','周三','周四','周五','周六','周日'],
@@ -169,6 +183,16 @@
 					"#FFFFFF",
 				]
 			},
+			
+			// 课程详情
+			clickClass(item, index){
+				console.log(item.name[index]);
+				this.showMyModal=true;
+			},
+			closeModal(){
+				this.showMyModal=this.showMyModal==true?false:true;
+			},
+			
 		}
 	}
 </script>
@@ -204,9 +228,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin-top: 5rpx;
+		/* margin-top: 5rpx;
 		margin-left: 5rpx;
-		margin-right: 5rpx;
+		margin-right: 5rpx; */
+		margin-left: 3rpx;
 	}
 	.text-content-today{
 		height: 100%;
@@ -215,10 +240,11 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin-top: 5rpx;
+		/* margin-top: 5rpx;
 		margin-left: 5rpx;
-		margin-right: 5rpx;
-		background-color: #a5ffc9;
+		margin-right: 5rpx; */
+		margin-left: 3rpx;
+		background-color: rgba(165,255,201,0.5);
 	}
 	.week-txt{
 		width: 100%;
@@ -236,7 +262,7 @@
 	/* 课表 */
 	.table-wrap{
 		width: 100%;
-		height: 90%;
+		height: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -248,7 +274,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		background-color: #ffe5ff;
+		background-color: rgba(255,237,255,0.5);
 	}
 	.time-text{
 		width: 100%;
@@ -278,7 +304,7 @@
 		align-items: center;
 		margin-left: 3rpx;
 		overflow: hidden;	//直接在父元素价格overflow就解决了flex
-		background-color: #a5ffc9;
+		background-color: rgba(165,255,201,0.5);
 	}
 	.class-text{
 		width: 100%;
