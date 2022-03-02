@@ -402,8 +402,8 @@
 		{
 		    // "pagePath": "pages/navigate_page/hair_3Dshow/hair_3Dshow",
 			"pagePath":"pages/navigate_page/classTable/classTable",
-		    "iconPath": "static/hairMall.png",
-		    "selectedIconPath": "static/hairMall_select.png",
+		    "iconPath": "static/classTable.png",
+		    "selectedIconPath": "static/classTable_select.png",
 		    "text": "我的课表"
 		},
 		{

@@ -120,8 +120,8 @@
 				APIname:['修改资料','修改密码'],
 				
 				funcIcon: ['../../../static/add.png', '../../../static/personal.png', '../../../static/hairMall_select.png'],
-				mineFunc:['我的订单','我的关注',"我的财富"],
-				funcCount:[1,"*",100],
+				mineFunc:['我的账户','我的成绩',"我的课表"],
+				funcCount:[8,"-",8],
 				
 				//细节按钮
 				buttonIcon:['../../../static/myData.png','../../../static/introduction.png','../../../static/system.png',

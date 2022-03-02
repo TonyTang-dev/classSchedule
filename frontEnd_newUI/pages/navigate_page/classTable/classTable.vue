@@ -15,13 +15,13 @@
 			<view class="time">
 				<text class="time-text" v-for="i in 4" :key="i">{{i}}</text>
 				<text class="time-text">午</text>
-				<text class="time-text" v-for="i in [6,7,8,9,10,11]" :key="i">{{i}}</text>
-				<text class="time-text" >~</text>
+				<text class="time-text" v-for="i in [6,7,8,9,10,11,12,13]" :key="i">{{i}}</text>
+				<!-- <text class="time-text" >~</text> -->
 			</view>
 			<view :class="weeky==(index+1)?'class-item-today':'class-item'" v-for="(item,index) in classList" :key="index">
 				<!-- 早上 -->
 				<view 
-					:class="[item.flex[j-1]==2?'class-text':'class-text-flex4']"
+					:class="[item.flex[0]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[0]" :key="j"
 					 :style="{backgroundColor: colorList()[item.id[j-1]],opacity: item.id[j-1]==0?0:1}"
 					 @click="item.id[j-1]==0?null:clickClass(item,j-1)">
@@ -38,7 +38,9 @@
 				<view
 					:class="[item.flex[1]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[1]" :key="j+3"
-					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]],opacity: item.id[j-1+item.flex[0]]==0?0:1}" >
+					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]],opacity: item.id[j-1+item.flex[0]]==0?0:1}"
+					 @click="item.id[j+item.flex[0]-1]==0?null:clickClass(item,j+item.flex[0]-1)">
+					 <!-- 其中j+item.flex[0]-1是为了计算课程在数组中的索引 -->
 					 <view class="classTip-wrap">
 						 <!-- 索引列表去得到下午的课程 -->
 						<text class="class-name">{{item.name[j-1+item.flex[0]]}}</text>
@@ -48,8 +50,10 @@
 				<!-- 晚上 -->
 				<view
 					class="class-text-night"
-					 :style="{backgroundColor: colorList()[item.id[item.id.length-1]],opacity: item.id[item.id.length-1]==0?0:1}" >
-					 <view class="classTip-wrap">
+					 :style="{opacity: item.id[item.id.length-1]==0?0:1}" >
+					 <view class="classTip-wrap" :style="{backgroundColor: colorList()[item.id[item.id.length-1]],
+						height: item.flex[2]==2?50+'%':item.flex[2]==3?75+'%':100+'%'}"
+						@click="item.id[item.id.length-1]==0?null:clickClass(item,item.id.length-1)">
 						 <!-- 索引列表去得到下午的课程 -->
 						<text class="class-name">{{item.name[item.name.length-1]}}</text>
 						<text class="classroom-text">{{item.classroom[item.name.length-1]}}</text>
@@ -59,13 +63,15 @@
 		</view>
 		
 		<u-modal :show="showMyModal"  title="课程详情" 
-						:closeOnClickOverlay="true" @confirm="closeModal" @close="closeModal">
+						:closeOnClickOverlay="true" 
+						:showConfirmButton="false" @close="closeModal">
 			<view class="slot-content">
 				<u-cell-group>
 					<u-cell
-						v-for="i in 3" :key="i"
-						title="老师+教室"
-						icon="search"
+						v-for="(item,index) in modalItem" :key="index"
+						:title="item"
+						:icon="modalIcon[index]"
+						:iconStyle="{color: colorList()[index+1]}"
 						size="large"
 					></u-cell>
 				</u-cell-group>
@@ -78,7 +84,10 @@
 	export default {
 		data() {
 			return {
+				// 课程详情
 				showMyModal: false,
+				modalItem: ['','','',''],//依次是课程名、教室、教师、上课时间--为了适配渲染
+				modalIcon: ['calendar','home','server-man','clock'],
 				month: 1,
 				weeky: 1,
 				week: ['周一','周二','周三','周四','周五','周六','周日'],
@@ -90,49 +99,56 @@
 					{
 						name: ['',"编译原理","数据库系统",'','企业法律风险管理'],
 						classroom: ['',"D1443","D1215",'','D1135'],
-						flex: [2,2,2],
+						teacher: ['',"陈咸章","吴开贵",'','乔兴旺'],
+						flex: [2,2,3],
 						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,1,2,0,3]
 					},
 					{
 						name: ['',"传感器网络与原理","Linux操作系统",'',''],
 						classroom: ['',"D1443","D1447",'',''],
-						flex: [1,1,3],
+						teacher: ['',"李艳涛","李双庆",'',''],
+						flex: [2,2,0],
 						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,4,5,0,0]
 					},
 					{
 						name: ["","编译原理",'RFID原理及应用','',''],
 						classroom: ["","D1443",'D1445','',''],
-						flex: [2,2,2],
+						teacher: ['',"陈咸章","刘卫宁",'',''],
+						flex: [2,2,0],
 						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,1,6,0,0]
 					},
 					{
 						name: ["","数据库系统",'','',''],
 						classroom: ["","DZ312",'','',''],
-						flex: [2,2,2],
+						teacher: ['',"吴开贵",'','',''],
+						flex: [2,2,0],
 						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,2,0,0,0]
 					},
 					{
 						name: ['','','',"","传感器网络与原理"],
 						classroom: ['','','',"","硬件实验室DS3305"],
-						flex: [2,2,2],
+						teacher: ['',"","",'','李艳涛'],
+						flex: [2,2,4],
 						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,0,0,0,4]
 					},
 					{
 						name: ["","",'编译原理',''],
 						classroom: ["","",'硬件实验室DS3305',''],
-						flex: [2,1,2],
+						teacher: ['',"","陈咸章",''],
+						flex: [2,1,0],
 						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,0,1,0]
 					},
 					{
 						name: ["RFID原理及应用",'','',""],
 						classroom: ["DS3305",'','',""],
-						flex: [1,2,2],
+						teacher: ['刘卫宁',"",'',''],
+						flex: [1,2,0],
 						time: ["3-4","6-7"],	//暂时未使用
 						id: [6,0,0,0]
 					},
@@ -186,13 +202,88 @@
 			
 			// 课程详情
 			clickClass(item, index){
-				console.log(item.name[index]);
+				this.modalItem[0]="课程: "+item.name[index];
+				this.modalItem[1]="教室: "+item.classroom[index];
+				this.modalItem[2]="教师: "+item.teacher[index];
+				this.modalItem[3]="时间: "+this.getTime(item,index);
 				this.showMyModal=true;
+			},
+			getTime(item,index){
+				switch(index){
+					case 0:{
+						if(item.flex[0]==1){
+							return "8:30-12:10"
+						}
+						else{
+							return '8:30-10:10'
+						}
+					}
+					case 1:{
+						if(item.flex[0]==1){
+							if(item.flex[1]==1){
+								return "14:25-18:05"
+							}
+							else{
+								return '14:25-16:05'
+							}
+						}
+						else{
+							return '10:30-12:10'
+						}
+					}
+					case 2:{
+						if(item.flex[0]==1){
+							if(item.flex[1]==1){
+								if(item.flex[2]==2){
+									return '19:00-20:40'
+								}
+								else if(item.flex[2]==3){
+									return '19:00-21:35'
+								}
+								else{
+									return '19:00-22:30'
+								}
+							}
+							else{
+								return '16:05:18:05'
+							}
+						}
+						else{
+							return '14:25-16:05'
+						}
+					}
+					case 3:{
+						if(item.flex[0]==1){
+							if(item.flex[2]==2){
+								return '19:00-20:40'
+							}
+							else if(item.flex[2]==3){
+								return '19:00-21:35'
+							}
+							else{
+								return '19:00-22:30'
+							}
+						}
+						else{
+							return '16:25-18:05'
+						}
+					}
+					case 4:{
+						if(item.flex[2]==2){
+							return '19:00-20:40'
+						}
+						else if(item.flex[2]==3){
+							return '19:00-21:35'
+						}
+						else{
+							return '19:00-22:30'
+						}
+					}
+				}
 			},
 			closeModal(){
 				this.showMyModal=this.showMyModal==true?false:true;
 			},
-			
 		}
 	}
 </script>
@@ -343,11 +434,10 @@
 	}
 	.class-text-night{
 		width: 100%;
-		flex: 3;
+		flex: 4;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		margin: 3rpx;
 		border-radius: 10rpx;
 	}

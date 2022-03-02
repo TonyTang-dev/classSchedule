@@ -26,8 +26,8 @@
 			</u-swiper>
 		</view>
 		
-		<u-collapse accordion >
-			<u-collapse-item title="今日上新" icon="gift">
+		<u-collapse :value="['0']">
+			<u-collapse-item name='0' title="今日上新" icon="gift">
 				<u-icon name="gift" size="32" slot="icon" color="#ff5500"></u-icon>
 				<scroll-view class="today-wrap" scroll-x="true">
 					<image class="card-wrap"
@@ -41,10 +41,6 @@
 		
 		<!-- API按钮接口 -->
 		<view class="APIset">
-			<view class="tips-text-wrap">
-				<image class="tip-img" src="../../../static/add.png"></image>
-				<text class="tip-text">应用推荐</text>
-			</view>
 			<view class="APIRow">
 				<view v-for="i in [0,1,2,3]" :key='i' class="temp-wrap">
 					<view class="button-icon-temp" @click="clickAPI(i)">
@@ -67,31 +63,9 @@
 			</view>
 		</view>
 		
-		<view class="tips-text-wrap margin-line">
-			<image class="tip-img" src="../../../static/hairMall_select.png"></image>
-			<text class="tip-text">发型推荐</text>
-		</view>
-		<view v-for="i in 10" :key="i" style="display: flex; flex-direction: row; margin-top:10px;">
-			<view class="recommand">
-				<image class="recommand_img" @click="clickPost" :src="recommandHair[(i)%4]"></image>
-				<view class="tips-date">
-					<text class="userCount">120人使用</text>
-					<text class="clickTry" @click="clickTry">点击试戴</text>				
-				</view>
-			</view>
-			<view class="recommand">
-				<image class="recommand_img" @click="clickPost" :src="recommandHair[(i+2)%4]"></image>
-				<view class="tips-date">
-					<text class="userCount">12人使用</text>
-					<text class="clickTry" @click="clickTry">点击试戴</text>				
-				</view>
-			</view>
-		</view>
-		
-		
 		<!-- 版权 -->
 		<view class="copyright">
-			<text>@Copyright Of 3D小组</text>
+			<text>@Copyright Of 共进团伙</text>
 		</view>
     </view>
 </template>
@@ -106,7 +80,7 @@
 				icon: ['../../../static/schedule1.png', '../../../static/newsAPI.png', '../../../static/map.png',
 					'../../../static/memory.png','../../../static/english.png','../../../static/settingsAPI.png'
 					,'../../../static/schedule1.png','../../../static/settingsAPI.png'],
-				APIname:['发型设计','测脸型','换发型','换刘海','发型社区','贴纸','配饰','漫画脸'],
+				APIname:['我的课表','查询课程','找空教室','校车时间','一线校园','校卡余额','英语备考','成绩查询'],
 				
 				//banner
 				banner: ["../../../static/banner3.png","../../../static/banner4.png"],
@@ -114,10 +88,6 @@
 				autoplay: true,
 				interval: 5000,
 				duration: 500,
-				
-				//图片
-				recommandHair:["../../../static/kid.png","../../../static/kid2.png",
-						"../../../static/head_man1.png","../../../static/head_man2.png"],
 					
 				nick: "兔子一号",
 				
@@ -239,17 +209,6 @@
 						break;
 				}
 				
-			},
-			//点击推荐
-			clickPost(){
-				uni.navigateTo({
-					url: 'hairCommunity/hairDetail/hairDetail'
-				});
-				return;
-			},
-			
-			clickTry(){
-				this.$u.toast("点击了试戴");
 			},
 			
 			// 选择新品
@@ -390,43 +349,6 @@
 		flex-direction: row;
 		justify-content: center;
 		margin-top: 15px;
-	}
-	
-	/* 功能提示文字 */
-	.tips-text-wrap{
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		margin-left: 5rpx;
-		/* justify-content: center; */
-	}
-	.tip-img{
-		width: 16px;
-		height: 16px;
-	}
-	.tip-text{
-		font-size: 14px;
-		font-weight: bold;
-		margin-left: 5rpx;
-	}
-	.margin-line{
-		margin-top: 20rpx;
-	}
-	.new-today{
-		display: flex;
-		justify-content: space-between;
-	}
-	
-	/* 收拢箭头 */
-	.left-wrap{
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-	}
-	.right-wrap{
-		width: 16px;
-		height: 8px;
-		margin-right: 10rpx;
 	}
 	
 	/* 今日上新 */
