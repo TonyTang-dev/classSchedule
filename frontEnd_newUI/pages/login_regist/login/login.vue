@@ -20,7 +20,17 @@
 			<input class="userPassword" type="password" v-model="userPassword" placeholder="请输入密码" />
 		</view>
 		<view class="aboutpassword">
-			<u-checkbox class="checkbox" size="13px" icon-size="12px" label-size="12px" @change="checkboxChange" v-model="checked" :disabled="false">记住密码</u-checkbox>
+			<u-checkbox-group class="checkbox">
+				<u-checkbox
+					size="13px" 
+					icon-size="12px"
+					label="记住密码"
+					label-size="12px"
+					@change="checkboxChange"
+					v-model="checked"
+					:disabled="false">
+				</u-checkbox>
+			</u-checkbox-group>
 			<text class="forget" @click="forgetpassword">忘记密码？</text>
 		</view>
 		<view class="buttonSet">
@@ -338,11 +348,13 @@
 			color: #2B85E4;
 		}
 		.button-LogReg{			//注册和登录按钮
-			width: 40%;
+			width: 50%;
 			height: 35px;
 			font-size: 16px;
 			font-weight: bold;
 			margin-top: 60px;
+			margin-left: 10rpx;
+			margin-right: 10rpx;
 		}
 		.title {				//页面标题
 			display: flex;
@@ -379,5 +391,11 @@
 		position: absolute;
 		top: 45px;
 		z-index: 2;
+	}
+	
+	.aboutpassword{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 	}
 </style>

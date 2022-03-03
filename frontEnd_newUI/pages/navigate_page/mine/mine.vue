@@ -83,8 +83,9 @@
 				:iconStyle="{'color':iconColor[index]}"
 			    isLink
 				size="large"
-			    :url="detailUrl[index]"
+				@click="clickDetail(index)"
 			></u-cell>
+			<!-- :url="detailUrl[index]" -->
 		</u-cell-group>
 		
 		<!-- 注意事项等 -->
