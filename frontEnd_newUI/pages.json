@@ -61,38 +61,29 @@
 				}
 			}
 		},
-	    {
-            "path" : "pages/hair_3Dshow/hair_3Dshow",
-            "style" : {
-				"navigationBarTitleText":"我的3D查看",
-				"app-plus":{
-					"titleNView":false
-				}
-			}
-        }
-        ,{
+		{
             "path" : "pages/login_regist/regist/regist",
             "style" : {}
+        },
+		{
+            "path" : "pages/navigate_page/Home/englishLearn/englishLearn",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "英语专栏",
+                "enablePullDownRefresh": true,
+				"onReachBottomDistance":0
+            }
+            
         }
         ,{
-            "path" : "pages/navigate_page/hairMall/TakePicture/takePicture",
-            "style" : {
-				"navigationBarTitleText": "选择美照",
-				"enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": {
-						"buttons": [
-							{
-								"text": "相册",
-								"color":"#2B85E4",
-								// "fontSrc": "/static/post.png",
-								"fontSize": "12px",
-								"float":"right"
-							}
-						]
-					}
-				}
-			}
+            "path" : "pages/navigate_page/Home/englishLearn/reciteWords/reciteWords",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "单词表",
+                "enablePullDownRefresh": true,
+				"onReachBottomDistance":0
+            }
+            
         }
         ,{
             "path" : "pages/navigate_page/mine/mine",
@@ -127,95 +118,6 @@
         ,{
             "path" : "pages/login_regist/login/forgetPassword/forgetPassword",
             "style" : {}
-        }
-        ,{
-            "path" : "pages/navigate_page/Home/measuringFace/measuringFace",
-            "style" : {
-				"navigationBarTitleText":"脸型分析",
-				// "navigationStyle":"custom",
-				// "navigationBarBackgroundColor":"rgba(0,0,0,0)",
-				// "navigationBarTextStyle":"white",
-				"app-plus": {
-					"titleNView": {
-						"type": "float",
-						"titleText": "过程分析"
-					}
-				}
-			}
-        }
-        ,{
-            "path" : "pages/navigate_page/Home/changeHairStyle/changeHairStyle",
-            "style" : {
-				"navigationBarTitleText":"换发型",
-				
-				"app-plus":{
-					"titleNView": {
-						"buttons": [
-							{
-								"text": "保存",
-								"color":"Black",
-								// "fontSrc": "/static/post.png",
-								"fontSize": "12px",
-								"float":"right"
-							}
-						]
-					}
-				}
-			}
-        }
-        ,{
-            "path" : "pages/navigate_page/hairMall/hairMall",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "发型广场",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/navigate_page/Home/cartoonFace/cartoonFace",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "漫画脸",
-                "enablePullDownRefresh": false,
-				"navigationBarBackgroundColor":"rgba(0,0,0,0)",
-				"navigationBarTextStyle":"white",
-				"app-plus": {
-					"titleNView": {
-						"type": "float"
-						// "titleText": "过程分析"
-					}
-				}
-            }
-            
-        }
-        
-        ,{
-            "path" : "pages/navigate_page/Home/hairCommunity/hairCommunity",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "发型社区",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/navigate_page/Home/hairCommunity/hairDetail/hairDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
-				"navigationBarBackgroundColor":"rgba(255, 255, 255, 0.0)",
-				"navigationBarTextStyle":"white",
-				"app-plus": {
-					"titleNView": false
-					// {
-					// 	"type": "float"
-					// 	// "titleText": "过程分析"
-					// }
-				}
-            }
-            
         }
         ,{
             "path" : "pages/navigate_page/mine/myData/myHomePage/myHomePage",

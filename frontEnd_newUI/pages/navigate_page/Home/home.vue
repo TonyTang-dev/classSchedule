@@ -80,7 +80,7 @@
 				icon: ['../../../static/schedule1.png', '../../../static/newsAPI.png', '../../../static/map.png',
 					'../../../static/memory.png','../../../static/english.png','../../../static/settingsAPI.png'
 					,'../../../static/schedule1.png','../../../static/settingsAPI.png'],
-				APIname:['我的课表','查询课程','找空教室','校车时间','一线校园','校卡余额','英语备考','成绩查询'],
+				APIname:['我的课表','查询课程','找空教室','校车时间','英语备考','校卡余额','一线校园','成绩查询'],
 				
 				//banner
 				banner: ["../../../static/banner3.png","../../../static/banner4.png"],
@@ -165,38 +165,38 @@
 				switch(func){
 					case 0:
 						// return;
-						uni.navigateTo({
-							url:"../hairMall/TakePicture/takePicture",
+						uni.switchTab({
+							url:"../classTable/classTable",
 						});
 						break;
 					case 1:
 						// return;
 						uni.navigateTo({
-							url:'measuringFace/measuringFace',
+							url:'',
 						});
 						break;
 					case 2:
 						_this.$u.toast("点击功能"+(func+1));
 						return;
 						uni.navigateTo({
-							url:'map/map',
+							url:'',
 						});
 						break;
 					case 3:
 						uni.navigateTo({
-							url:'../../test/test',
+							url:'',
 						});
 						break;
 					case 4:
 						uni.navigateTo({
-							url:'hairCommunity/hairCommunity',
+							url:'englishLearn/englishLearn',
 						});
 						break;
 					case 5:
 						_this.$u.toast("点击功能"+(func+1));
 						return;
 						uni.switchTab({
-							url:'../settings/settings',
+							url:'',
 						});
 						break;
 					case 6:
@@ -204,7 +204,7 @@
 						break;
 					case 7:
 						uni.navigateTo({
-							url:'./cartoonFace/cartoonFace',
+							url:'',
 						});
 						break;
 				}
