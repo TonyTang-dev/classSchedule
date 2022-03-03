@@ -22,6 +22,8 @@
 				nextMargin="30"
 				radius="5"
 				bgColor="#ffffff"
+				keyName="url"
+				:showTitle="true"
 				@click="selectPoster">
 			</u-swiper>
 		</view>
@@ -83,7 +85,17 @@
 				APIname:['我的课表','查询课程','找空教室','校车时间','英语备考','校卡余额','一线校园','成绩查询'],
 				
 				//banner
-				banner: ["../../../static/banner3.png","../../../static/banner4.png"],
+				banner: [{
+						url:"../../../static/campus.png",
+						title:"仰天大笑出门去，我辈岂是蓬蒿人"
+					},{
+						url: "../../../static/campus4.jpg",
+						title:"当年少，狂心不已，不醉怎归得"
+					},{
+						url: "../../../static/campus3.png",
+						title:"落日无边江无尽，此身此日更须忙"
+					},
+					],
 				indicatorDots: true,
 				autoplay: true,
 				interval: 5000,

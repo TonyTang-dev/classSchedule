@@ -62,6 +62,32 @@
 			</view>
 		</view>
 		
+		<!-- 底部刷新按钮 -->
+		<u-grid class="bottom-refresh-wrap"
+			:border="false"
+			col="5">
+			<u-grid-item>
+				<u-icon class="week-index-text" name="reload"
+					color="#535353" size="20" @click="changePage(0)"></u-icon>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon class="week-index-text" name="arrow-left"
+					color="#535353" size="20" @click="changePage(1)"></u-icon>
+			</u-grid-item>
+			<u-grid-item>
+				<text class="week-index-text" @click="changePage(4)">第 {{nowWeek}} 周</text>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon class="week-index-text" name="arrow-right"
+					color="#535353" size="20" @click="changePage(2)"></u-icon>
+			</u-grid-item>
+			<u-grid-item>
+				<u-icon class="week-index-text" :name="perspectiveIcon"
+					color="#535353" size="20" @click="changePage(3)"></u-icon>
+			</u-grid-item>
+		</u-grid>
+		
+		<!-- 课程详情 -->
 		<u-modal :show="showMyModal"  title="课程详情" 
 						:closeOnClickOverlay="true" 
 						:showConfirmButton="false" @close="closeModal">
@@ -84,6 +110,11 @@
 	export default {
 		data() {
 			return {
+				// 第几周
+				nowWeek: 1,
+				perspectiveIcon: "grid",
+				// 课表视图-一周/一学期
+				tablePerspective: 0,
 				// 课程详情
 				showMyModal: false,
 				modalItem: ['','','',''],//依次是课程名、教室、教师、上课时间--为了适配渲染
@@ -284,6 +315,31 @@
 			closeModal(){
 				this.showMyModal=this.showMyModal==true?false:true;
 			},
+			
+			// 切换课表周数
+			changePage(index){
+				switch(index){
+					case 0:
+						this.$u.toast("刷新课表");
+						break;
+					case 1:
+						this.nowWeek==1?
+							this.$u.toast("已经是第一周"):this.nowWeek=this.nowWeek-1;
+						break;
+					case 2:
+						this.nowWeek==23?
+							this.$u.toast("已经是最后一周"):this.nowWeek=this.nowWeek+1;
+						break;
+					case 3:
+						this.tablePerspective=this.tablePerspective==0?1:0;
+						this.perspectiveIcon=this.perspectiveIcon=="grid"?"calendar":"grid";
+						this.$u.toast("切换课表视图");
+						break;
+					case 4:
+						this.$u.toast("第"+this.nowWeek+"周");
+						break;
+				}
+			}
 		}
 	}
 </script>
@@ -456,5 +512,27 @@
 		font-size: 12px;
 		text-align: center;
 		color: #ffffff;
+	}
+	
+	/* 底部刷新部分按钮 */
+	.bottom-refresh-wrap{
+		width: 100%;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.week-index-text{
+		font-size: 14px;
+		flex: 1;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	/* modal */
+	.slot-content{
+		width: 100%;
 	}
 </style>
