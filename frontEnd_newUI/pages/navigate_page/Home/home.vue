@@ -42,28 +42,22 @@
 		</u-collapse>
 		
 		<!-- API按钮接口 -->
-		<view class="APIset">
-			<view class="APIRow">
-				<view v-for="i in [0,1,2,3]" :key='i' class="temp-wrap">
-					<view class="button-icon-temp" @click="clickAPI(i)">
-						<view class="button-icon">
-							<image class="button" :src="icon[i]"></image>
-							<text class="APIname">{{APIname[i]}}</text>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="APIRow">
-				<view v-for="j in [4,5,6,7]" :key='j' class="temp-wrap">
-					<view class="button-icon-temp">
-						<view class="button-icon" @click="clickAPI(j)">
-							<image class="button" :src="icon[j]"></image>
-							<text class="APIname">{{APIname[j]}}</text>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
+		<u-grid
+			:border="false" 
+			col="4">
+			<u-grid-item
+					v-for="(item,index) in icon"
+					:key="index"
+					 @click="clickAPI(index)"
+					 style="paddingTop: 20rpx">
+				<u-icon
+					:customStyle="{paddingTop:20+'rpx'}"
+					:name="item"
+					:size="32" >
+				</u-icon>
+				<text class="APIname">{{APIname[index]}}</text>
+			</u-grid-item>
+		</u-grid>
 		
 		<!-- 版权 -->
 		<view class="copyright">
@@ -315,40 +309,7 @@
 		border-radius: 10px;
 	}
 	
-	/* API按钮 */
-	.APIset{
-		margin-top: 30rpx;
-		/* height: 200rpx; //因为我需要控件自适应，所以就不固定高度了，空间大小通过子控件的css来设定*/
-		box-shadow: 0px 0px 0px 2px #f0fff2;
-	}
-	.APIRow{
-		height: 130rpx;
-		/* flex: 1; */
-		margin-top: 20px;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-	.temp-wrap{
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-	.button-icon-temp{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-	.button-icon{
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	.button{
-		width: 32px;
-		height: 32px;
-	}
+	/* 细节按钮 */
 	.APIname{
 		font-size: 14px;
 	}

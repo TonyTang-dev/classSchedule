@@ -132,7 +132,6 @@
 						classroom: ['',"D1443","D1215",'','D1135'],
 						teacher: ['',"陈咸章","吴开贵",'','乔兴旺'],
 						flex: [2,2,3],
-						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,1,2,0,3]
 					},
 					{
@@ -140,7 +139,6 @@
 						classroom: ['',"D1443","D1447",'',''],
 						teacher: ['',"李艳涛","李双庆",'',''],
 						flex: [2,2,0],
-						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,4,5,0,0]
 					},
 					{
@@ -148,7 +146,6 @@
 						classroom: ["","D1443",'D1445','',''],
 						teacher: ['',"陈咸章","刘卫宁",'',''],
 						flex: [2,2,0],
-						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,1,6,0,0]
 					},
 					{
@@ -156,7 +153,6 @@
 						classroom: ["","DZ312",'','',''],
 						teacher: ['',"吴开贵",'','',''],
 						flex: [2,2,0],
-						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,2,0,0,0]
 					},
 					{
@@ -164,7 +160,6 @@
 						classroom: ['','','',"","硬件实验室DS3305"],
 						teacher: ['',"","",'','李艳涛'],
 						flex: [2,2,4],
-						time: ["3-4","6-7"],	//暂时未使用
 						id: [0,0,0,0,4]
 					},
 					{
@@ -172,7 +167,6 @@
 						classroom: ["","",'硬件实验室DS3305',''],
 						teacher: ['',"","陈咸章",''],
 						flex: [2,1,0],
-						time: ["1-2","11-13"],	//暂时未使用
 						id: [0,0,1,0]
 					},
 					{
@@ -180,7 +174,6 @@
 						classroom: ["DS3305",'','',""],
 						teacher: ['刘卫宁',"",'',''],
 						flex: [1,2,0],
-						time: ["3-4","6-7"],	//暂时未使用
 						id: [6,0,0,0]
 					},
 				]
@@ -189,6 +182,12 @@
 		
 		onLoad(){
 			var _this=this;
+			
+			uni.setStorage({
+				key: 'storage_key',
+				data: {"a":_this.classList}
+			})
+			
 			uni.getSystemInfo({
 				success(res){
 					_this.windowHeight=res.screenHeight
@@ -464,6 +463,7 @@
 		margin-left: 5rpx;
 		margin-right: 5rpx;
 		border-radius: 10rpx;
+		overflow: hidden;
 	}
 	.class-text-flex4{
 		width: 100%;
@@ -477,6 +477,7 @@
 		margin-right: 5rpx;
 		margin-bottom: 5rpx;
 		border-radius: 10rpx;
+		overflow: hidden;
 	}
 	.class-text-noon{
 		width: 100%;
@@ -487,6 +488,7 @@
 		justify-content: center;
 		margin: 3rpx;
 		border-radius: 10rpx;
+		overflow: hidden;
 	}
 	.class-text-night{
 		width: 100%;
@@ -495,13 +497,15 @@
 		flex-direction: column;
 		align-items: center;
 		margin: 3rpx;
-		border-radius: 10rpx;
+		overflow: hidden;
 	}
 	.classTip-wrap{
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		border-radius: 10rpx;
 	}
 	.class-name{
 		font-size: 14px;

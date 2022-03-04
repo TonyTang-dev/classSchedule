@@ -59,6 +59,9 @@
 				icon:"none"
 			})
 		},
+		onLoad() {
+			
+		},
 		methods: {
 			//点击查单词
 			clickSearch(){
