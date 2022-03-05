@@ -44,7 +44,8 @@
 		<!-- API按钮接口 -->
 		<u-grid
 			:border="false" 
-			col="4">
+			col="4"
+			style="marginBottom:10rpx">
 			<u-grid-item
 					v-for="(item,index) in icon"
 					:key="index"
@@ -58,6 +59,7 @@
 				<text class="APIname">{{APIname[index]}}</text>
 			</u-grid-item>
 		</u-grid>
+		<u-line></u-line>
 		
 		<!-- 版权 -->
 		<view class="copyright">
