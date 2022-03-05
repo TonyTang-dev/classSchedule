@@ -12,6 +12,7 @@
 		<u-line></u-line>
 		<!-- 课表 -->
 		<view class="table-wrap">
+			<!-- <u-line color="#00ff00" class="line-time"></u-line> -->
 			<view class="time">
 				<text class="time-text" v-for="i in 4" :key="i">{{i}}</text>
 				<text class="time-text">午</text>
@@ -20,7 +21,7 @@
 			</view>
 			<view :class="weeky==(index+1)?'class-item-today':'class-item'" v-for="(item,index) in classList" :key="index">
 				<!-- 早上 -->
-				<view 
+				<!-- <view 
 					:class="[item.flex[0]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[0]" :key="j"
 					 :style="{backgroundColor: colorList()[item.id[j-1]],opacity: item.id[j-1]==0?0:1}"
@@ -29,22 +30,42 @@
 						<text class="class-name">{{item.name[j-1]}}</text>
 						<text class="classroom-text">{{item.classroom[j-1]}}</text>
 					</view>
+				</view> -->
+				<view
+					:class="[item.flex[0]==2?'class-text':'class-text-flex4']"
+					v-for="j in [0,1]" :key="j"
+					 :style="{backgroundColor: colorList()[item.id[j]],opacity: item.id[j]==0?0:1,position: item.id[j]==0&&item.flex[0]==1?'fixed':'static'}"
+					 @click="item.id[j]==0?null:clickClass(item,j)">
+					 <view class="classTip-wrap">
+						<text class="class-name">{{item.name[j]}}</text>
+						<text class="classroom-text">{{item.classroom[j]}}</text>
+					</view>
 				</view>
 				<!-- 中午 -->
 				<view class="class-text-noon">
 					<text class="class-name"></text>
 				</view>
 				<!-- 下午 -->
-				<view
+				<!-- <view
 					:class="[item.flex[1]==2?'class-text':'class-text-flex4']"
 					v-for="j in item.flex[1]" :key="j+3"
 					 :style="{backgroundColor: colorList()[item.id[j-1+item.flex[0]]],opacity: item.id[j-1+item.flex[0]]==0?0:1}"
-					 @click="item.id[j+item.flex[0]-1]==0?null:clickClass(item,j+item.flex[0]-1)">
+					 @click="item.id[j+item.flex[0]-1]==0?null:clickClass(item,j+item.flex[0]-1)"> -->
 					 <!-- 其中j+item.flex[0]-1是为了计算课程在数组中的索引 -->
-					 <view class="classTip-wrap">
+					 <!-- <view class="classTip-wrap"> -->
 						 <!-- 索引列表去得到下午的课程 -->
-						<text class="class-name">{{item.name[j-1+item.flex[0]]}}</text>
+						<!-- <text class="class-name">{{item.name[j-1+item.flex[0]]}}</text>
 						<text class="classroom-text">{{item.classroom[j-1+item.flex[0]]}}</text>
+					</view> -->
+				<!-- </view> -->
+				<view
+					:class="[item.flex[2]==2?'class-text':'class-text-flex4']"
+					v-for="j in [2,3]" :key="j"
+					 :style="{backgroundColor: colorList()[item.id[j]],opacity: item.id[j]==0?0:1,position: item.id[j]==0&&item.flex[2]==1?'fixed':'static'}"
+					 @click="item.id[j]==0?null:clickClass(item,j)">
+					 <view class="classTip-wrap">
+						<text class="class-name">{{item.name[j]}}</text>
+						<text class="classroom-text">{{item.classroom[j]}}</text>
 					</view>
 				</view>
 				<!-- 晚上 -->
@@ -52,7 +73,7 @@
 					class="class-text-night"
 					 :style="{opacity: item.id[item.id.length-1]==0?0:1}" >
 					 <view class="classTip-wrap" :style="{backgroundColor: colorList()[item.id[item.id.length-1]],
-						height: item.flex[2]==2?50+'%':item.flex[2]==3?75+'%':100+'%'}"
+						height: item.flex[4]==2?50+'%':item.flex[4]==3?75+'%':100+'%'}"
 						@click="item.id[item.id.length-1]==0?null:clickClass(item,item.id.length-1)">
 						 <!-- 索引列表去得到下午的课程 -->
 						<text class="class-name">{{item.name[item.name.length-1]}}</text>
@@ -126,55 +147,56 @@
 				windowHeight: 800,
 				barHeight: 30,
 				
-				classList: [
+				classList: [{'name': ['', '编译原理', '数据库系统', '', '企业法律风险管理'], 'classroom': ['', 'D1443', 'D1215', '', 'D1135'], 'teacher': ['', '陈咸彰-[主讲]', '吴开贵-[主讲]', '', '乔兴旺-[主讲]'], 'flex': [2, 2, 2, 2, 3], 'id': [0, 3, 2, 0, 8]}, {'name': ['', '传感器网络原理与应用', 'Linux操作系统', '', ''], 'classroom': ['', 'D1443', 'D1447', '', ''], 'teacher': ['', '李艳涛-[主讲]', '李双庆-[主讲]', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 4, 1, 0, 0]}, {'name': ['', '编译原理', 'RFID原理及应用', '', ''], 'classroom': ['', 'D1443', 'D1445', '', ''], 'teacher': ['', '陈咸彰-[主讲]', '刘卫宁-[主讲]', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 3, 5, 0, 0]}, {'name': ['', '数据库系统', '', '', ''], 'classroom': ['', 'DZ312', '', '', ''], 'teacher': ['', '吴开贵-[主讲]', '', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 2, 0, 0, 0]}, {'name': ['', '传感器网络原理与应用', '', '', ''], 'classroom': ['', 'D1445', '', '', ''], 'teacher': ['', '李艳涛-[主讲]', '', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 4, 0, 0, 0]}, {'name': ['', '', '', '', ''], 'classroom': ['', '', '', '', ''], 'teacher': ['', '', '', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 0, 0, 0, 0]}, {'name': ['', '', '', '', ''], 'classroom': ['', '', '', '', ''], 'teacher': ['', '', '', '', ''], 'flex': [2, 2, 2, 2, 2], 'id': [0, 0, 0, 0, 0]}],
+				classList2: [
 					{
 						name: ['',"编译原理","数据库系统",'','企业法律风险管理'],
 						classroom: ['',"D1443","D1215",'','D1135'],
 						teacher: ['',"陈咸章","吴开贵",'','乔兴旺'],
-						flex: [2,2,3],
+						flex: [2,2,2,2,3],
 						id: [0,1,2,0,3]
 					},
 					{
 						name: ['',"传感器网络与原理","Linux操作系统",'',''],
 						classroom: ['',"D1443","D1447",'',''],
 						teacher: ['',"李艳涛","李双庆",'',''],
-						flex: [2,2,0],
+						flex: [2,2,2,2,0],
 						id: [0,4,5,0,0]
 					},
 					{
 						name: ["","编译原理",'RFID原理及应用','',''],
 						classroom: ["","D1443",'D1445','',''],
 						teacher: ['',"陈咸章","刘卫宁",'',''],
-						flex: [2,2,0],
+						flex: [2,2,2,2,0],
 						id: [0,1,6,0,0]
 					},
 					{
 						name: ["","数据库系统",'','',''],
 						classroom: ["","DZ312",'','',''],
 						teacher: ['',"吴开贵",'','',''],
-						flex: [2,2,0],
+						flex: [2,2,2,2,0],
 						id: [0,2,0,0,0]
 					},
 					{
 						name: ['','','',"","传感器网络与原理"],
 						classroom: ['','','',"","硬件实验室DS3305"],
 						teacher: ['',"","",'','李艳涛'],
-						flex: [2,2,4],
+						flex: [2,2,2,2,4],
 						id: [0,0,0,0,4]
 					},
 					{
-						name: ["","",'编译原理',''],
-						classroom: ["","",'硬件实验室DS3305',''],
-						teacher: ['',"","陈咸章",''],
-						flex: [2,1,0],
-						id: [0,0,1,0]
+						name: ["","",'编译原理','',''],
+						classroom: ["","",'硬件实验室DS3305','',''],
+						teacher: ['',"","陈咸章",'',''],
+						flex: [2,2,1,2,0],
+						id: [0,0,1,0,0]
 					},
 					{
-						name: ["RFID原理及应用",'','',""],
-						classroom: ["DS3305",'','',""],
+						name: ["RFID原理及应用",'','','',""],
+						classroom: ["DS3305",'','','',""],
 						teacher: ['刘卫宁',"",'',''],
-						flex: [1,2,0],
-						id: [6,0,0,0]
+						flex: [1,2,2,2,0],
+						id: [6,0,0,0,0]
 					},
 				]
 			}
@@ -413,6 +435,11 @@
 		flex-direction: row;
 		align-items: center;
 	}
+	/* .line-time{
+		top: 50%;
+		height: 2px;
+		position: absolute;
+	} */
 	.time{
 		width: 30px;
 		height: 100%;
@@ -453,6 +480,7 @@
 		background-color: rgba(165,255,201,0.5);
 	}
 	.class-text{
+		background-color: #0000FF;
 		width: 100%;
 		flex: 2;
 		display: flex;

@@ -316,7 +316,7 @@
 	
 	/* 版权 */
 	.copyright{
-		font-size: .7em;
+		font-size: 14px;
 		color: #999791;
 		display: flex;
 		flex-direction: row;
