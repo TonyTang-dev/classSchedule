@@ -1,5 +1,14 @@
 ﻿前端分支--TangYingfu---由于界面过于简陋和功能实现技术性太差，正考虑界面优化，但由于UI感太差，我先实现功能，后期继续完成界面迁移和优化。
   
+  
+ 0306：
+ 
+ 课表设计以初步完成
+ 
+ ![image](https://user-images.githubusercontent.com/81294772/156917981-1bc59f9c-aecf-4fe7-9eb6-2a6d11f43ff4.png)
+
+ 
+  
  0304：
  
  ![image](https://user-images.githubusercontent.com/81294772/156801840-966f1d12-1a63-4ed9-b491-173705b28c93.png)
