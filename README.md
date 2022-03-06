@@ -1,5 +1,13 @@
 ﻿**项目主日志**
  
+ 0306：
+ 
+ 课表设计以初步完成
+ 
+ ![image](https://user-images.githubusercontent.com/81294772/156917981-1bc59f9c-aecf-4fe7-9eb6-2a6d11f43ff4.png)
+
+ 
+ 
  0304：
  
  ![image](https://user-images.githubusercontent.com/81294772/156801840-966f1d12-1a63-4ed9-b491-173705b28c93.png)
