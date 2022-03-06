@@ -11,11 +11,27 @@
 		<!-- 用一个白板把第一次刷新时的单词与搜索栏隔开 -->
 		<view class="partition"></view>
 		<view class="wordList" v-for="i in 100" :key="i">
-			<view class="wordWrap" @click="clickWord(i)">
+			<view class="wordWrap" @click="clickWord(i,wordsText[i+glossaryIndex*100].word,wordsText[i+glossaryIndex*100].paraphrase)">
 				<text class="number">{{i+100*glossaryIndex}}. </text>
 				<text class="words"> {{wordsText[i+glossaryIndex*100].word}}  :  {{wordsText[i+glossaryIndex*100].paraphrase}}</text>
 			</view>
 		</view>
+		
+		<u-modal :show="showMyModal"  title="单词详情"
+						:closeOnClickOverlay="true" 
+						:showConfirmButton="false" @close="closeModal">
+			<view class="slot-content" style="width: 100%;">
+				<u-cell-group style="width: 100%;">
+					<u-cell
+						v-for="(item,index) in modalItem" :key="index"
+						:title="item"
+						:icon="modalIcon[index]"
+						size="large"
+						style="width: 100%;"
+					></u-cell>
+				</u-cell-group>
+			</view>
+		</u-modal>
 	</view>
 </template>
 
@@ -26,6 +42,10 @@
 			return {
 				glossaryIndex:0,
 				wordsText:glossary.vocabulary,
+				
+				showMyModal: false,
+				modalItem: ['',''],//依次是课程名、教室、教师、上课时间--为了适配渲染
+				modalIcon: ['calendar','home','server-man','clock'],
 				
 				//查单词
 				wordText:'',
@@ -105,11 +125,13 @@
 				return;
 			},
 			
-			clickWord(index){
-				uni.showToast({
-					title:"这是第"+(index+this.glossaryIndex*100)+"个单词",
-					icon:"none"
-				});
+			clickWord(index,eng,chinese){
+				this.modalItem[0]="英: "+eng;
+				this.modalItem[1]="汉: "+chinese;
+				this.showMyModal=true;
+			},
+			closeModal(){
+				this.showMyModal=this.showMyModal==true?false:true;
 			},
 		}
 	}
@@ -123,7 +145,7 @@
 		background-color: #ffffff;
 	}
 	.searchWord{
-		height: 35px;
+		height: 40px;
 		margin-top: 5px;
 		margin-bottom: 5px;
 		display: flex;
@@ -133,7 +155,7 @@
 	}
 	.tempWrap{
 		margin: 3px;
-		height: 30px;
+		height: 40px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -161,9 +183,13 @@
 		width: 100%;
 		height: 100%;
 	}
+	.wordList{
+		height: 50px;
+		width: 100%;
+	}
 	.wordWrap{
 		width: 100%;
-		height: 30px;
+		height: 100%;
 		margin-top: 3px;
 		display: flex;
 		flex-direction: row;

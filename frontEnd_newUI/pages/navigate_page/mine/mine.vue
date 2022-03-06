@@ -98,7 +98,7 @@
 		
 		<!-- 版权 -->
 		<view class="copyright">
-			<text>@Copyright Of 3D小组</text>
+			<text>@Copyright Of 共进小队</text>
 		</view>
 		
 		<!-- 弹窗 -->

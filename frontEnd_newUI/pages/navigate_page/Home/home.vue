@@ -45,7 +45,7 @@
 		<u-grid
 			:border="false" 
 			col="4"
-			style="marginBottom:10rpx">
+			style="marginBottom:20rpx">
 			<u-grid-item
 					v-for="(item,index) in icon"
 					:key="index"
@@ -63,7 +63,7 @@
 		
 		<!-- 版权 -->
 		<view class="copyright">
-			<text>@Copyright Of 共进团伙</text>
+			<text>@Copyright Of 共进小队</text>
 		</view>
     </view>
 </template>
@@ -318,7 +318,7 @@
 	
 	/* 版权 */
 	.copyright{
-		font-size: 14px;
+		font-size: 12px;
 		color: #999791;
 		display: flex;
 		flex-direction: row;

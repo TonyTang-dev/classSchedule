@@ -28,30 +28,6 @@
 				<text style="float:right;color:blue;" @click="openAgreement">《用户协议》</text>
 			</view>
 		</view>
-		
-		<view class="input-wrap">
-			<view class="inputname">
-				<!-- <text class="hintinfo">用户名：</text> -->
-				<input class="userinfo-account" type="text" v-model="userName"  placeholder="手机号/邮箱" />
-				<button class="getCode" @click="clickGetCode">验证码</button>
-			</view>
-			<view class="inputname">
-				<!-- <text class="hintinfo">用户权限：</text> -->
-				<input class="userinfo" type="text" v-model="userRootKey"  placeholder="验证码" />
-			</view>
-			<view class="inputname">
-				<!-- <text class="hintinfo">密   码：</text> -->
-				<input class="userinfo" type="password" v-model="userPassword" placeholder="请输入密码" />
-			</view>
-			<view class="inputname">
-				<!-- <text class="hintinfo">确认密码：</text> -->
-				<input class="userinfo" type="password" v-model="userPpassword"  placeholder="请确认密码" />
-			</view>
-		</view>
-		<view class="buttonSet">
-			<u-button @click="registButton" :style="[buttonStyle]" class="button-LogReg">注册</u-button>
-			<u-button @click="cancelButton" :style="[buttonStyle]" class="button-LogReg">取消</u-button>
-		</view>
 	</view>
 </template>
 

@@ -19,16 +19,29 @@
 			</view>
 		</view>
 		<!-- 注意事项等 -->
-		<view class="appDetail">
+		<!-- <view class="appDetail">
 			<view class="detailButton" v-for="i in [0,1,2]" :key="i" @click="clickDetail(i)">
 				<image class="buttonIcon" :src="buttonIcon[i]"></image>
 				<text class="buttonText">{{detailButton[i]}}</text>
 			</view>
-		</view>
+		</view> -->
+		
+		<u-cell-group>
+			<u-cell
+				v-for="(item,index) in detailButton" :key="index"
+			    :title="item"
+				:icon="buttonIcon[index]"
+				:iconStyle="{'color':iconColor[index]}"
+			    isLink
+				size="large"
+				@click="clickDetail(index)"
+			></u-cell>
+			<!-- :url="detailUrl[index]" -->
+		</u-cell-group>
 		
 		<!-- 版权 -->
 		<view class="copyright">
-			<text>@Copyright Of YingFu</text>
+			<text>@Copyright Of 共进小队</text>
 		</view>
 	</view>
 </template>
@@ -47,6 +60,7 @@
 				//细节按钮
 				buttonIcon:['../../../../static/bank6.png','../../../../static/bank4.png','../../../../static/testTime.png'],
 				detailButton:['六级单词','四级单词','考试时间'],
+				iconColor: ['#0000ff','#ff0000','#ffaa00','#ff0000','#ff007f','#5555ff'],
 				
 				//查单词
 				wordText:'',
@@ -142,7 +156,7 @@
 	}
 	.tempWrap{
 		margin: 3px;
-		height: 30px;
+		height: 40px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;

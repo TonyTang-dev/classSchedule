@@ -8,7 +8,7 @@
 		
 		<view class="title">
 			<image class="loginGif" src="../../../static/login_logo.gif"></image>
-			3D焕发
+			CQU课程表
 		</view>
 		<image class="logo" :src="myHeadPhoto"></image>
 		<view class="inputname">

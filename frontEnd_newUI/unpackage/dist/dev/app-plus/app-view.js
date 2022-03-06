@@ -380,7 +380,7 @@ var render = function() {
       ),
       _c(
         "u-grid",
-        { staticStyle: { marginBottom: "10rpx" }, attrs: { _i: 14 } },
+        { staticStyle: { marginBottom: "20rpx" }, attrs: { _i: 14 } },
         _vm._l(_vm._$g(15, "f"), function(item, index, $21, $31) {
           return _c(
             "u-grid-item",
@@ -416,7 +416,7 @@ var render = function() {
         { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
         [
           _c("v-uni-text", { attrs: { _i: 20 } }, [
-            _vm._v("@Copyright Of 共进团伙")
+            _vm._v("@Copyright Of 共进小队")
           ])
         ],
         1
@@ -3871,7 +3871,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*状态栏 */\n.statusBar{\n\twidth: 100%;\n\theight: 70px;\n\tposition: fixed;\n\ttop: 0;\n\tbackground-color: #ffffff;\n\tz-index: 998;\n}\n/*右上角按钮 */\n.myInfo-wrap{\n\tdisplay: inline-block;\n\tposition: fixed;\n\ttop: 70rpx;\n\tright: 10rpx;\n\t/* z-index: 998; */\n}\n.info-wrap{\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\talign-items: center;\n}\n.drawer-head-menu{\n\t/* display: inline-block;\n\tposition: fixed; */\n\tborder-radius: 50%;\n\t/* top: 6px;\n\tleft: 10px; *//* \n\tz-index: 999; */ \n\tmargin-right: 3px;\n\twidth:64rpx;\n\theight: 64rpx;\n}\n/* 推荐 */\n.recommand{\n\twidth: 50%;\n\tmargin: 10rpx;\n\theight: 200px;\n\tborder-radius: 10px;\n\tdisplay: flex;\n\tflex-direction: column;\n\tbox-shadow: 0px 0px 0px 2px #f0f0f0;\n}\n.schedule-today{\n\tflex-direction: 1;\n\twidth: 20px;\n\theight: 20px;\n}\n.tips-date{\n\tfont-size: 14px;\n\tdisplay: flex;\n\tflex-direction: row;\n\tpadding-left: 10px;\n\tpadding-top: 3px;\n\tz-index: 2;\n}\n.clickTry{\n\tflex: 1;\n\theight: 1.5em;\n\ttext-align: center;\n\ttext-align: right;\n\tpadding-right: 10px;\n\tborder-radius: 5px;\n\tbackground-color: #ff5500;\n}\n.userCount{\n\tflex: 1;\n\tfont-size: 12px;\n}\n.recommand_img{\n\twidth: 100%;\n\theight: 90%;\n\tborder-radius: 10px;\n}\n/* 细节按钮 */\n.APIname{\n\tfont-size: 14px;\n}\n/* 版权 */\n.copyright{\n\tfont-size: 14px;\n\tcolor: #999791;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\tmargin-top: 15px;\n}\n/* 今日上新 */\n.today-wrap{\n\tdisplay: flex;\n\tflex-direction: row;\n\twhite-space: nowrap;\n\tmargin-left: 10rpx;\n\tmargin-top: 5rpx;\n}\n.card-wrap{\n\tdisplay: inline-block;\n\twidth: 128rpx;\n\theight: 128rpx;\n\tborder-radius: 10%;\n\tmargin: 5rpx;\n\t/* background-color: #FF5500; */\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*状态栏 */\n.statusBar{\n\twidth: 100%;\n\theight: 70px;\n\tposition: fixed;\n\ttop: 0;\n\tbackground-color: #ffffff;\n\tz-index: 998;\n}\n/*右上角按钮 */\n.myInfo-wrap{\n\tdisplay: inline-block;\n\tposition: fixed;\n\ttop: 70rpx;\n\tright: 10rpx;\n\t/* z-index: 998; */\n}\n.info-wrap{\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\talign-items: center;\n}\n.drawer-head-menu{\n\t/* display: inline-block;\n\tposition: fixed; */\n\tborder-radius: 50%;\n\t/* top: 6px;\n\tleft: 10px; *//* \n\tz-index: 999; */ \n\tmargin-right: 3px;\n\twidth:64rpx;\n\theight: 64rpx;\n}\n/* 推荐 */\n.recommand{\n\twidth: 50%;\n\tmargin: 10rpx;\n\theight: 200px;\n\tborder-radius: 10px;\n\tdisplay: flex;\n\tflex-direction: column;\n\tbox-shadow: 0px 0px 0px 2px #f0f0f0;\n}\n.schedule-today{\n\tflex-direction: 1;\n\twidth: 20px;\n\theight: 20px;\n}\n.tips-date{\n\tfont-size: 14px;\n\tdisplay: flex;\n\tflex-direction: row;\n\tpadding-left: 10px;\n\tpadding-top: 3px;\n\tz-index: 2;\n}\n.clickTry{\n\tflex: 1;\n\theight: 1.5em;\n\ttext-align: center;\n\ttext-align: right;\n\tpadding-right: 10px;\n\tborder-radius: 5px;\n\tbackground-color: #ff5500;\n}\n.userCount{\n\tflex: 1;\n\tfont-size: 12px;\n}\n.recommand_img{\n\twidth: 100%;\n\theight: 90%;\n\tborder-radius: 10px;\n}\n/* 细节按钮 */\n.APIname{\n\tfont-size: 14px;\n}\n/* 版权 */\n.copyright{\n\tfont-size: 12px;\n\tcolor: #999791;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\tmargin-top: 15px;\n}\n/* 今日上新 */\n.today-wrap{\n\tdisplay: flex;\n\tflex-direction: row;\n\twhite-space: nowrap;\n\tmargin-left: 10rpx;\n\tmargin-top: 5rpx;\n}\n.card-wrap{\n\tdisplay: inline-block;\n\twidth: 128rpx;\n\theight: 128rpx;\n\tborder-radius: 10%;\n\tmargin: 5rpx;\n\t/* background-color: #FF5500; */\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -4003,7 +4003,7 @@ var render = function() {
             staticClass: _vm._$g(4, "sc"),
             attrs: { src: _vm._$g(4, "a-src"), _i: 4 }
           }),
-          _vm._v("3D焕发")
+          _vm._v("CQU课程表")
         ],
         1
       ),
@@ -5102,27 +5102,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
-try {
-  components = {
-    uButton: __webpack_require__(/*! @/uview-ui/components/u-button/u-button.vue */ 121).default
-  }
-} catch (e) {
-  if (
-    e.message.indexOf("Cannot find module") !== -1 &&
-    e.message.indexOf(".vue") !== -1
-  ) {
-    console.error(e.message)
-    console.error("1. 排查组件名称拼写是否正确")
-    console.error(
-      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
-    )
-    console.error(
-      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
-    )
-  } else {
-    throw e
-  }
-}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -5312,133 +5291,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(21, "sc"),
-                attrs: { type: "text", placeholder: "手机号/邮箱", _i: 21 },
-                model: {
-                  value: _vm._$g(21, "v-model"),
-                  callback: function($$v) {
-                    _vm.$handleVModelEvent(21, $$v)
-                  },
-                  expression: "userName"
-                }
-              }),
-              _c(
-                "v-uni-button",
-                {
-                  staticClass: _vm._$g(22, "sc"),
-                  attrs: { _i: 22 },
-                  on: {
-                    click: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [_vm._v("验证码")]
-              )
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(24, "sc"),
-                attrs: { type: "text", placeholder: "验证码", _i: 24 },
-                model: {
-                  value: _vm._$g(24, "v-model"),
-                  callback: function($$v) {
-                    _vm.$handleVModelEvent(24, $$v)
-                  },
-                  expression: "userRootKey"
-                }
-              })
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(26, "sc"),
-                attrs: { type: "password", placeholder: "请输入密码", _i: 26 },
-                model: {
-                  value: _vm._$g(26, "v-model"),
-                  callback: function($$v) {
-                    _vm.$handleVModelEvent(26, $$v)
-                  },
-                  expression: "userPassword"
-                }
-              })
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(28, "sc"),
-                attrs: { type: "password", placeholder: "请确认密码", _i: 28 },
-                model: {
-                  value: _vm._$g(28, "v-model"),
-                  callback: function($$v) {
-                    _vm.$handleVModelEvent(28, $$v)
-                  },
-                  expression: "userPpassword"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
-        [
-          _c(
-            "u-button",
-            {
-              staticClass: _vm._$g(30, "sc"),
-              style: _vm._$g(30, "s"),
-              attrs: { _i: 30 },
-              on: {
-                click: function($event) {
-                  return _vm.$handleViewEvent($event)
-                }
-              }
-            },
-            [_vm._v("注册")]
-          ),
-          _c(
-            "u-button",
-            {
-              staticClass: _vm._$g(31, "sc"),
-              style: _vm._$g(31, "s"),
-              attrs: { _i: 31 },
-              on: {
-                click: function($event) {
-                  return _vm.$handleViewEvent($event)
-                }
-              }
-            },
-            [_vm._v("取消")]
-          )
-        ],
-        1
       )
     ],
     1
@@ -5613,6 +5465,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uCellGroup: __webpack_require__(/*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 163)
+      .default,
+    uCell: __webpack_require__(/*! @/uview-ui/components/u-cell/u-cell.vue */ 52).default
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -5722,46 +5597,27 @@ var render = function() {
         1
       ),
       _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-        _vm._l(_vm._$g(13, "f"), function(i, $10, $20, $30) {
-          return _c(
-            "v-uni-view",
-            {
-              key: i,
-              staticClass: _vm._$g("13-" + $30, "sc"),
-              attrs: { _i: "13-" + $30 },
-              on: {
-                click: function($event) {
-                  return _vm.$handleViewEvent($event)
-                }
+        "u-cell-group",
+        { attrs: { _i: 12 } },
+        _vm._l(_vm._$g(13, "f"), function(item, index, $20, $30) {
+          return _c("u-cell", {
+            key: item,
+            attrs: { _i: "13-" + $30 },
+            on: {
+              click: function($event) {
+                return _vm.$handleViewEvent($event)
               }
-            },
-            [
-              _c("v-uni-image", {
-                staticClass: _vm._$g("14-" + $30, "sc"),
-                attrs: { src: _vm._$g("14-" + $30, "a-src"), _i: "14-" + $30 }
-              }),
-              _c(
-                "v-uni-text",
-                {
-                  staticClass: _vm._$g("15-" + $30, "sc"),
-                  attrs: { _i: "15-" + $30 }
-                },
-                [_vm._v(_vm._$g("15-" + $30, "t0-0"))]
-              )
-            ],
-            1
-          )
+            }
+          })
         }),
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+        { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
         [
-          _c("v-uni-text", { attrs: { _i: 17 } }, [
-            _vm._v("@Copyright Of YingFu")
+          _c("v-uni-text", { attrs: { _i: 15 } }, [
+            _vm._v("@Copyright Of 共进小队")
           ])
         ],
         1
@@ -5858,7 +5714,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*查单词 */\n.searchWord{\n\tmargin: 3px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: center;\n}\n.tempWrap{\n\tmargin: 3px;\n\theight: 30px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tborder-radius: 4px;\n\tbox-shadow: 0px 0px 2px 2px #00ffff;\n}\n.searchInput{\n\twidth: 100%;\n\tbackground-color: #ffffff;\n\tpadding-left: 4px;\n\tfont-size: 16px;\n\tfont-weight: bold;\n}\n.searchButton{\n\tmargin-right: 4px;\n}\n.swiperContent{\n\tbackground-color: #f3f2f0;\n\tpadding-bottom: 10px;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n}\n.page-section-spacing{\t/*不能直接对swiper的父亲组件进行对齐方式更改,会出错 */\n\twidth: 80%;\n\tmargin-top: 10px;\n}\n.swiper-item{\n\tbackground-color: #fff1cd;\n\tborder-radius: 5px;\n\twidth: 100%;\n\theight: 100%;\n\ttext-align: center;\n}\n/* detail按钮 */\n.appDetail{\n\tfont-size: 16px;\n\tmargin-top: 20px;\n}\n.buttonIcon{\n\twidth: 20px;\n\theight: 20px;\n}\n.buttonText{\n\tmargin-left: 10px;\n}\n.detailButton{\n\tbox-shadow: 0px 0px 0px 2px #fffced;\n\tmargin-top: 10px;\n\tpadding-left: 10px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n}\n/* 版权 */\n.copyright{\n\tfont-size: .7em;\n\tcolor: #999791;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\tmargin-top: 15px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*查单词 */\n.searchWord{\n\tmargin: 3px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: center;\n}\n.tempWrap{\n\tmargin: 3px;\n\theight: 40px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tborder-radius: 4px;\n\tbox-shadow: 0px 0px 2px 2px #00ffff;\n}\n.searchInput{\n\twidth: 100%;\n\tbackground-color: #ffffff;\n\tpadding-left: 4px;\n\tfont-size: 16px;\n\tfont-weight: bold;\n}\n.searchButton{\n\tmargin-right: 4px;\n}\n.swiperContent{\n\tbackground-color: #f3f2f0;\n\tpadding-bottom: 10px;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n}\n.page-section-spacing{\t/*不能直接对swiper的父亲组件进行对齐方式更改,会出错 */\n\twidth: 80%;\n\tmargin-top: 10px;\n}\n.swiper-item{\n\tbackground-color: #fff1cd;\n\tborder-radius: 5px;\n\twidth: 100%;\n\theight: 100%;\n\ttext-align: center;\n}\n/* detail按钮 */\n.appDetail{\n\tfont-size: 16px;\n\tmargin-top: 20px;\n}\n.buttonIcon{\n\twidth: 20px;\n\theight: 20px;\n}\n.buttonText{\n\tmargin-left: 10px;\n}\n.detailButton{\n\tbox-shadow: 0px 0px 0px 2px #fffced;\n\tmargin-top: 10px;\n\tpadding-left: 10px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n}\n/* 版权 */\n.copyright{\n\tfont-size: .7em;\n\tcolor: #999791;\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: center;\n\tmargin-top: 15px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -5939,6 +5795,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uModal: __webpack_require__(/*! @/uview-ui/components/u-modal/u-modal.vue */ 320).default,
+    uCellGroup: __webpack_require__(/*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 163)
+      .default,
+    uCell: __webpack_require__(/*! @/uview-ui/components/u-cell/u-cell.vue */ 52).default
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -6042,7 +5922,44 @@ var render = function() {
           ],
           1
         )
-      })
+      }),
+      _c(
+        "u-modal",
+        {
+          attrs: { _i: 11 },
+          on: {
+            close: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(12, "sc"),
+              staticStyle: { width: "100%" },
+              attrs: { _i: 12 }
+            },
+            [
+              _c(
+                "u-cell-group",
+                { staticStyle: { width: "100%" }, attrs: { _i: 13 } },
+                _vm._l(_vm._$g(14, "f"), function(item, index, $21, $31) {
+                  return _c("u-cell", {
+                    key: item,
+                    staticStyle: { width: "100%" },
+                    attrs: { _i: "14-" + $31 }
+                  })
+                }),
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     2
   )
@@ -6135,7 +6052,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*查单词 */\n.fixedView{\n\tposition: fixed;\n\twidth: 100%;\n\tbackground-color: #ffffff;\n}\n.searchWord{\n\theight: 35px;\n\tmargin-top: 5px;\n\tmargin-bottom: 5px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: center;\n}\n.tempWrap{\n\tmargin: 3px;\n\theight: 30px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tborder-radius: 4px;\n\tbox-shadow: 0px 0px 2px 2px #00ffff;\n}\n.searchInput{\n\twidth: 100%;\n\tbackground-color: #ffffff;\n\tpadding-left: 4px;\n\tfont-size: 16px;\n\tfont-weight: bold;\n}\n.searchButton{\n\tmargin-right: 4px;\n}\n/* 隔开 */\n.partition{\n\twidth: 100%;\n\theight: 50px;\n}\n.content{\n\twidth: 100%;\n\theight: 100%;\n}\n.wordWrap{\n\twidth: 100%;\n\theight: 30px;\n\tmargin-top: 3px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tbox-shadow: 0px 0px 2px 2px #d2d9ff;\n}\n.number{\n\tpadding-left: 4px;\n\tfont-size: .7em;\n\tcolor: #007AFF;\n}\n.words{\n\tpadding-left: 3px;\n\tfont-size: 16px;\n\toverflow: hidden;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*查单词 */\n.fixedView{\n\tposition: fixed;\n\twidth: 100%;\n\tbackground-color: #ffffff;\n}\n.searchWord{\n\theight: 40px;\n\tmargin-top: 5px;\n\tmargin-bottom: 5px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: center;\n}\n.tempWrap{\n\tmargin: 3px;\n\theight: 40px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tborder-radius: 4px;\n\tbox-shadow: 0px 0px 2px 2px #00ffff;\n}\n.searchInput{\n\twidth: 100%;\n\tbackground-color: #ffffff;\n\tpadding-left: 4px;\n\tfont-size: 16px;\n\tfont-weight: bold;\n}\n.searchButton{\n\tmargin-right: 4px;\n}\n/* 隔开 */\n.partition{\n\twidth: 100%;\n\theight: 50px;\n}\n.content{\n\twidth: 100%;\n\theight: 100%;\n}\n.wordList{\n\theight: 50px;\n\twidth: 100%;\n}\n.wordWrap{\n\twidth: 100%;\n\theight: 100%;\n\tmargin-top: 3px;\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tbox-shadow: 0px 0px 2px 2px #d2d9ff;\n}\n.number{\n\tpadding-left: 4px;\n\tfont-size: .7em;\n\tcolor: #007AFF;\n}\n.words{\n\tpadding-left: 3px;\n\tfont-size: 16px;\n\toverflow: hidden;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -6607,7 +6524,7 @@ var render = function() {
         { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
         [
           _c("v-uni-text", { attrs: { _i: 41 } }, [
-            _vm._v("@Copyright Of 3D小组")
+            _vm._v("@Copyright Of 共进小队")
           ])
         ],
         1
@@ -11780,7 +11697,11 @@ var render = function() {
       _c("u-line", { attrs: { _i: 8 } }),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+        {
+          staticClass: _vm._$g(9, "sc"),
+          style: _vm._$g(9, "s"),
+          attrs: { _i: 9 }
+        },
         [
           _c(
             "v-uni-view",

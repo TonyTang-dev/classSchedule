@@ -71,7 +71,12 @@
             {
                 "navigationBarTitleText": "英语专栏",
                 "enablePullDownRefresh": true,
-				"onReachBottomDistance":0
+				"onReachBottomDistance":0,
+				"app-plus":{
+					"titleNView":{
+						"titleAlign": "left"
+					}
+				}
             }
             
         }
@@ -81,7 +86,12 @@
             {
                 "navigationBarTitleText": "单词表",
                 "enablePullDownRefresh": true,
-				"onReachBottomDistance":0
+				"onReachBottomDistance":0,
+				"app-plus":{
+					"titleNView":{
+						"titleAlign": "left"
+					}
+				}
             }
             
         }
