@@ -182,10 +182,20 @@
 			this.weeky=date.getDay()==0?7:date.getDay();
 			
 			// 寻找当前周数
+			var flag=false;
+			var Js=null;
 			for (var i=0;i<23;i++){
-				var Js = dateJs[i];
-				if((date.getMonth()+1)==Js[7] && date.getDate() in Js){
-					this.nowWeek = i;
+				Js = dateJs[i];
+				if((date.getMonth()+1)==Js[7]){
+					for(var j=0;j<8;j++){
+						if(date.getDate()==Js[j]){
+							this.nowWeek = i;
+							flag=true;
+							break;
+						}
+					}
+				}
+				if(flag){
 					break;
 				}
 			}
