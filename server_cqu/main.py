@@ -22,7 +22,7 @@ def getTime(index):
 def main():
     session = Session()
     try:
-        login(session, "07038769", "20000405tyf")  # 需要登陆
+        login(session, "07038769", "")  # 需要登陆
     except NeedCaptcha as e:  # 需要输入验证码的情况
         with open("captcha.jpg", "wb") as file:
             file.write(e.image)
