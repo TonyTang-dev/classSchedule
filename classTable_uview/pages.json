@@ -63,7 +63,14 @@
 		},
 		{
             "path" : "pages/login_regist/regist/regist",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"注册",
+				"app-plus":{
+					"titleNView":{
+						"titleAlign":"left"
+					}
+				}
+			}
         },
 		{
             "path" : "pages/navigate_page/Home/englishLearn/englishLearn",
@@ -127,7 +134,14 @@
         }
         ,{
             "path" : "pages/login_regist/login/forgetPassword/forgetPassword",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"忘记密码",
+				"app-plus":{
+					"titleNView":{
+						"titleAlign":"left"
+					}
+				}
+			}
         }
         ,{
             "path" : "pages/navigate_page/mine/myData/myHomePage/myHomePage",

@@ -1,29 +1,42 @@
 <template>
 	<view class="content">
-		<view class="title">修改密码</view>
-		<view style="padding-top: 40upx;">
-			<view class="inputArea">
-				<input v-model="registerPhone" placeholder="请输入手机号" type="number" maxlength="11" class="inputClass" />
-			</view>
-			<view class="inputArea"> 
-				<view style="display: flex;">
-					<input type="number" maxlength="6" placeholder="验证码" class="inputClass" style="flex:3;border-radius: 22px 0 0 22px;"
-					 v-model="registerCode" />
-					<view class="inputClass" @click="getsmscode" style="flex:1;border-radius:0 22px 22px 0;border-left: none; font-size: 14px;">{{smsbtn.text}}</view>
-				</view>
-			</view>
-			<view class="inputArea">
-				<input v-model="registerPassword" placeholder="输入密码" type="password" class="inputClass" />
-			</view>
-			<view class="inputArea">
-				<input v-model="confirmPassword" placeholder="确认新密码" type="password" class="inputClass" />
-			</view>
-			<view style="padding: 0 10%;">
-				<text style="color: red;">{{message}}</text>
-			</view>
-			<view class="inputArea">
-				<button style="border-radius:22px; width: 50%; background-color: #ff5500;" @click="goRegister">确 认</button>
-			</view>
+		
+		<!-- 背景图片 -->
+		<image class="bgimg"></image>
+		
+		<view class="inputname">
+			<u--input
+				placeholder="请输入您的手机号"
+				prefixIcon="phone"
+				class="input-uvie"
+				prefixIconStyle="font-size: 24px;color: #909399"
+				v-model="registerPhone" >
+			</u--input>
+		</view>
+		<view class="inputname">
+			<u-input placeholder="请输入验证码"
+			prefixIcon="bell"
+			class="input-uvie"
+			v-model="registerCode"
+			maxlength="6"
+			prefixIconStyle="font-size: 24px;color: #909399">
+				<view slot="suffix">
+					<u-button
+						@tap="getsmscode"
+						:text="smsbtn.text"
+						type="success"
+						size="mini"
+					></u-button>
+				</view> 
+			</u-input> 
+		</view>
+		
+		
+		<view style="padding: 0 10%; font-size: 14px;">
+			<text style="color: red;">{{message}}</text>
+		</view>
+		<view class="buttonSet">
+			<u-button @click="submit" class="button-LogReg">确认</u-button>
 		</view>
 	</view>
 </template>
@@ -32,9 +45,18 @@
 	export default {
 		data() {
 			return {
+				userName:'',					//用户名
+				userRootKey:'',					//用户权限密钥
+				userAge:'',						//用户年龄
+				userEmail:'',					//用户邮箱
+				userGender:'',					//用户性别
+				userPassword:'',				//用户密码
+				userPpassword:'',				//用户第二次去人密码
+				index:-1,						//下拉索引
+				
+				
+				//2
 				registerPhone: '',
-				registerPassword: '',
-				confirmPassword: '',
 				registerCode: '',
 				smsbtn: {
 					text: '发送',
@@ -42,11 +64,11 @@
 					codeTime: 60
 				},
 				timerId: null,
-				message: ''
+				message: '',
 			}
 		},
 		
-		computed: {
+		computed: {	
 			
 		},
 		
@@ -58,6 +80,7 @@
 				
 			},
 			
+			//2
 			getsmscode() {
 				//此处写发送验证码逻辑
 				if (this.smsbtn.codeTime != 60) {
@@ -78,68 +101,31 @@
 					1000);
 				return false;
 			},
-			goRegister() {
+			submit() {
 				let registerPhone = this.registerPhone;
-				let registerPassword = this.registerPassword;
-				let confirmPassword = this.confirmPassword;
 				let registerCode = this.registerCode;
 				if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(registerPhone))) {
-					this.message = "手机号码有误，请重填";
+					this.message = "手机号码有误/为空，请重填";
 					return false;
 				}
 				if (registerCode < 100000) {
 					this.message = "验证码不符合格式";
 					return false;
 				}
-				if (!registerPassword) {
-					this.message = "密码为空";
-					return false;
-				}
-			
-				let ls = 0;
-				if (registerPassword.match(/([a-z])+/)) {
-					ls++;
-				}
-				if (registerPassword.match(/([0-9])+/)) {
-					ls++;
-				}
-				if (registerPassword.match(/([A-Z])+/)) {
-					ls++;
-				}
-				if (registerPassword.match(/[^a-zA-Z0-9]+/)) {
-					ls++;
-				}
-				if (registerPassword.length < 8) {
-					ls = 0;
-				}
-				if (ls < 2) {
-					this.message = "密码强度不够，至少8位，大写、小写、字母、符号 其中两种";
-					return false;
-				}
-			
-			
-				if (confirmPassword != registerPassword) {
-					this.message = "两次密码不同";
-					return false;
-				}
-				uni.showLoading({
-					title: '加载中···',
-					mask: false
+				
+				uni.navigateTo({
+					url: 'modifyPassword/modifyPassword'
 				});
-			
-				let headers = {};
-				headers['content-type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-				let PHPSESSID = uni.getStorageSync('PHPSESSID');
-				if (PHPSESSID) {
-					headers['cookie'] = 'PHPSESSID=' + PHPSESSID;//将PHPSESSID放入请求头中,如你有其他cookies都可以缀后面，分号分割。浏览器端本身就有cookies机制，不设置
-				}
+				
+				return;//先直接杀掉网络请求
+				
+				
 				uni.request({
 					url: this.$url + '/api/login/register.php',//此处使用了全局变量拼接url（main.js文件中），关于全局变量官方问答里有
 					method: 'POST',
 					header: headers,
 					data: {
 						phone: this.registerPhone, //phone应该以后台验证码接收到的为phone，否则会造成修改后任意手机号注册漏洞，本demo不作处理
-						pw: this.registerPassword //本demo没有传输验证码，自行传输
 					},
 					success: res => {
 						console.log(res);
@@ -186,8 +172,18 @@
 </script>
 
 <style lang="scss" scoped>
-	page{
-		background-color: #f0f0f0;
+	// page{
+	// 	background-color: #00f4b3;
+	// }
+	/* 背景图片 */
+	.bgimg{
+		background-image: url("../../../../static/bgSky.png");
+		// background-color: #5BC9C0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		// filter: blur(3rpx) brightness(70%);//模糊半径和变暗度
 	}
 	.content {						//父容器
 		flex-direction: column;
@@ -197,31 +193,82 @@
 		width: 100%;
 		height: 100%;
 		
-									//用户注册标题
-		.title {
-			margin-top: 100upx;
-			text-align: center;
-			font-size: 28px;
-			font-weight: 500;
-			margin-bottom: 80upx;
+		.buttonSet{				//按钮集合设置
+			width: 100%;
+			flex-direction: row;
+			display: flex;
+			margin-top: 80rpx;
 		}
-		
-		.inputArea {
-			padding: 20upx 10%;
-		}
-		
-		.inputClass {
-			border: 2px solid #ccc;
-			border-radius: 22px;
-			outline: 0;
-			padding: 8px 15px;
+		.button-LogReg{
+			width: 60%;
+			height: 35px;
 			font-size: 16px;
-			border-style: groove;
-			width: 90%;
-			background-color: #FFFFFF;
-			-moz-box-shadow: inset 0 0 10px #CCC;
-			-webkit-box-shadow: inset 0 0 10px #CCC;
-			box-shadow: inset 0 0 10px #CCC;
+			font-weight: bold;
+			color: #5E5E5E;
 		}
+		.inputname {			//输入框用户名
+			width: 70%;
+			flex-direction: row;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 60rpx;
+			font-weight: bold;
+			
+			.userName{			//用户名
+				width: 100%;
+				height: 2em;
+				border-radius: 3px;
+				background-color: #FFFFFF;
+				font-size: 16px;
+				color: #000000;
+			}
+			.icon{
+				width: 24px;
+				height: 24px;
+				margin-right: 10rpx;
+			}
+			.userPassword{		//密码
+				width: 100%;
+				height: 2em;
+				background-color: #FFFFFF;
+				border-radius: 3px;
+				font-size: 16px;
+				color: #000000;
+			}
+		}
+		
+									//输入框设置
+		input {
+			text-align: left;
+			margin-bottom: 5rpx;
+			padding-bottom: 6rpx;
+		}
+	}
+	
+	// 验证码
+	.code-input{
+		flex: 1;
+		border-style: none;
+		font-weight: bold;
+	}
+	.getcode{
+		width: 3em;
+		padding-left: 3rpx;
+		font-size: 16px;
+		border-style: none  none none solid;
+		border-width: 1px;
+		border-color: #999791;
+		opacity: 0.8;
+	}
+	.eye{
+		width: 24px;
+		height: 24px;
+	}
+	
+	.input-uvie{
+		font-weight: bold;
+		font-size: 16px;
+		background-color: #FFFFFF; 
 	}
 </style>

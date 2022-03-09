@@ -1,32 +1,69 @@
 <template>
 	<view class="content">
-		<view class="title">用户注册</view>
-		<view style="padding-top: 40upx;">
-			<view class="inputArea">
-				<input v-model="registerPhone" placeholder="请输入手机号" type="number" maxlength="11" class="inputClass" />
-			</view>
-			<view class="inputArea"> 
-				<view style="display: flex;">
-					<input type="number" maxlength="6" placeholder="验证码" class="inputClass" style="flex:3;border-radius: 22px 0 0 22px;"
-					 v-model="registerCode" />
-					<view class="inputClass" @click="getsmscode" style="flex:1;border-radius:0 22px 22px 0;border-left: none; font-size: 14px;">{{smsbtn.text}}</view>
+		
+		<!-- 背景图片 -->
+		<image class="bgimg"></image>
+		
+		<view class="inputname">
+			<u--input
+				placeholder="请输入您的手机号"
+				prefixIcon="phone"
+				class="input-uvie"
+				prefixIconStyle="font-size: 24px;color: #909399"
+				v-model="registerPhone" >
+			</u--input>
+		</view>
+		<view class="inputname">
+			<u-input placeholder="请输入验证码"
+			prefixIcon="bell"
+			class="input-uvie"
+			v-model="registerCode"
+			maxlength="6"
+			prefixIconStyle="font-size: 24px;color: #909399">
+				<view slot="suffix">
+					<u-button
+						@tap="getsmscode"
+						:text="smsbtn.text"
+						type="success"
+						size="mini"
+					></u-button>
+				</view> 
+			</u-input> 
+		</view>
+		<view class="inputname">
+			<u--input
+				placeholder="请输入您的密码"
+				prefixIcon="lock"
+				class="input-uvie"
+				:type="eyePass1"
+				v-model="registerPassword"
+				prefixIconStyle="font-size: 24px;color: #909399">
+				<view slot="suffix">
+					<u-icon v-if="lock1==true" name="eye-off" @click="changeEye(1)"></u-icon>
+					<u-icon v-else name="eye-fill" @click="changeEye(1)"></u-icon>
 				</view>
-			</view>
-			<view class="inputArea">
-				<input v-model="registerPassword" placeholder="输入密码" type="password" class="inputClass" />
-			</view>
-			<view class="inputArea">
-				<input v-model="confirmPassword" placeholder="确认登录密码" type="password" class="inputClass" />
-			</view>
-			<view style="padding: 0 10%;">
-				<text style="color: red;">{{message}}</text>
-			</view>
-			<view class="inputArea">
-				<button style="border-radius:22px; width: 50%; background-color: #ff5500;" @click="goRegister">注 册</button>
-			</view>
-			<view class="inputArea">
-				<text style="float:right;color:blue;" @click="openAgreement">《用户协议》</text>
-			</view>
+			</u--input>
+		</view>
+		<view class="inputname">
+			<u--input
+				placeholder="再次输入您的密码"
+				prefixIcon="lock"
+				suffixIcon="eye-fill"
+				class="input-uvie"
+				:type="eyePass2"
+				v-model="confirmPassword"
+				prefixIconStyle="font-size: 24px;color: #909399">
+				<view slot="suffix">
+					<u-icon v-if="lock2==true" name="eye-off" @click="changeEye(2)"></u-icon>
+					<u-icon v-else name="eye-fill" @click="changeEye(2)"></u-icon>
+				</view>
+			</u--input>
+		</view>
+		<view style="padding: 0 10%; font-size: 14px;">
+			<text style="color: red;">{{message}}</text>
+		</view>
+		<view class="buttonSet">
+			<u-button @click="submit" class="button-LogReg">注册</u-button>
 		</view>
 	</view>
 </template>
@@ -44,7 +81,6 @@
 				userGender:'',					//用户性别
 				userPassword:'',				//用户密码
 				userPpassword:'',				//用户第二次去人密码
-				genderList:["男","女"],			//用户性别列表
 				index:-1,						//下拉索引
 				
 				
@@ -59,17 +95,18 @@
 					codeTime: 60
 				},
 				timerId: null,
-				message: ''
+				message: '',
+				
+				// 小眼睛
+				eyePass1: 'password',
+				eyePass2: 'password',
+				lock1: false,
+				lock2: false,
 			}
 		},
 		
-		computed: {								//按钮风格
-			buttonStyle() {
-				let style = {};
-				style.color = "#fff";
-				style.backgroundColor = this.$u.color['warning'];
-				return style;
-			},
+		computed: {	
+			
 		},
 		
 		components: {
@@ -80,75 +117,28 @@
 				
 			},
 			
-			clickGetCode(){
-				this.$u.toast("点击了获取验证码");
-			},
-			
-			//点击取消按钮
-			cancelButton(){
-				this.$u.toast("取消注册并返回登陆界面")
-				uni.redirectTo({
-					url:"../login/login",
-				})
-			},
-			
-			//注册按钮
-			registButton(){
-				//前期判断信息是否完善和密码是否一致
-				if(this.userName==""||this.userPassword==""||this.userPpassword==""){
-					this.$u.toast("请完善信息后再点击注册")
-					return
-				}
-				if(this.userPassword!=this.userPpassword){
-					this.$u.toast("您的密码前后不一致")
-					return
-				}
-				
-				//检验密码位数是否符合要求
-				if(this.userPassword.length!=6){
-					this.$u.toast("您的密码格式不正确，请输入6位密码");
-					return;
-				}
-				
-				//this指针
-				var _this=this
-				
-				//暂时直接提示后杀死
-				this.$u.toast("点击了注册");
-				return;
-				
-				uni.showModal({
-					title: '确认注册',
-					content: '确认注册信息无误并提交？',
-					success: function (res) {
-						if (res.confirm) {
-							uni.request({
-								url: '/api/createUser', 
-								method:'POST',
-								//传送用户名、管理员令牌、密码，性别、年龄邮箱
-								// data:{userName:_this.userName,
-								// 		managerKey:_this.userRootKey,
-								// 		password:_this.userPassword,
-								// 		regAge:_this.userAge,
-								// 		regSex:_this.userGender,
-								// 		regEmail:_this.userEmail}, 
-								success: (res) => {
-									console.log(res.data);
-									return;					//先直接杀掉，后续再处理
-									if(!res.data.data.status){
-										_this.$u.toast("用户名已存在，请更改")
-										return;
-									}
-									uni.navigateBack({
-										delta:1,
-									})
-								}
-							});
-						} else if (res.cancel) {
-							console.log('取消注册');
-						}
+			//小眼睛
+			changeEye(index){
+				if(index==1){
+					if(this.lock1){
+						this.lock1=false;
+						this.eyePass1="password"
 					}
-				});
+					else{
+						this.lock1=true;
+						this.eyePass1="text"
+					}
+				}
+				else{
+					if(this.lock2){
+						this.lock2=false;
+						this.eyePass2="password"
+					}
+					else{
+						this.lock2=true;
+						this.eyePass2="text"
+					}
+				}
 			},
 			
 			//2
@@ -172,13 +162,13 @@
 					1000);
 				return false;
 			},
-			goRegister() {
+			submit() {
 				let registerPhone = this.registerPhone;
 				let registerPassword = this.registerPassword;
 				let confirmPassword = this.confirmPassword;
 				let registerCode = this.registerCode;
 				if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(registerPhone))) {
-					this.message = "手机号码有误，请重填";
+					this.message = "手机号码有误/为空，请重填";
 					return false;
 				}
 				if (registerCode < 100000) {
@@ -227,6 +217,10 @@
 				if (PHPSESSID) {
 					headers['cookie'] = 'PHPSESSID=' + PHPSESSID;//将PHPSESSID放入请求头中,如你有其他cookies都可以缀后面，分号分割。浏览器端本身就有cookies机制，不设置
 				}
+				
+				return;//先直接杀掉网络请求
+				
+				
 				uni.request({
 					url: this.$url + '/api/login/register.php',//此处使用了全局变量拼接url（main.js文件中），关于全局变量官方问答里有
 					method: 'POST',
@@ -280,8 +274,18 @@
 </script>
 
 <style lang="scss" scoped>
-	page{
-		background-color: #f0f0f0;
+	// page{
+	// 	background-color: #00f4b3;
+	// }
+	/* 背景图片 */
+	.bgimg{
+		background-image: url("../../../static/bgSky.png");
+		// background-color: #5BC9C0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		// filter: blur(3rpx) brightness(70%);//模糊半径和变暗度
 	}
 	.content {						//父容器
 		flex-direction: column;
@@ -291,103 +295,82 @@
 		width: 100%;
 		height: 100%;
 		
-		.input-wrap{
-			width: 80%;
-		}
-		
-		.buttonSet{					//按钮父容器
-			flex-direction: row;
-			display: flex;
-		}
-		.inputname {
+		.buttonSet{				//按钮集合设置
 			width: 100%;
 			flex-direction: row;
 			display: flex;
+			margin-top: 80rpx;
+		}
+		.button-LogReg{
+			width: 60%;
+			height: 35px;
+			font-size: 16px;
+			font-weight: bold;
+			color: #5E5E5E;
+		}
+		.inputname {			//输入框用户名
+			width: 70%;
+			flex-direction: row;
+			display: flex;
 			align-items: center;
-									//提示内容
-			// .hintinfo{
-			// 	width: 20%;
-			// 	margin-top: 20px;
-			// 	font-size: 12px;
-			// }
-								//输入内容
-			.userinfo{
+			justify-content: center;
+			margin-top: 60rpx;
+			font-weight: bold;
+			
+			.userName{			//用户名
+				width: 100%;
+				height: 2em;
+				border-radius: 3px;
+				background-color: #FFFFFF;
+				font-size: 16px;
+				color: #000000;
+			}
+			.icon{
+				width: 24px;
+				height: 24px;
+				margin-right: 10rpx;
+			}
+			.userPassword{		//密码
 				width: 100%;
 				height: 2em;
 				background-color: #FFFFFF;
-				border-radius: 10px;
-				margin-top: 20px;
-				font-size: 14px;
-				padding-left: 3px;
-				border-style: groove;
-				-moz-box-shadow: inset 0 0 10px #CCC;
-				-webkit-box-shadow: inset 0 0 10px #CCC;
-				box-shadow: inset 0 0 10px #CCC;
-			}
-			
-			//账号栏
-			.userinfo-account{
-				width: 60%;
-				height: 2em;
-				background-color: #FFFFFF;
-				border-radius: 10px;
-				margin-top: 20px;
-				font-size: 14px;
-				padding-left: 3px;
-				border-style: groove;
-				-moz-box-shadow: inset 0 0 10px #CCC;
-				-webkit-box-shadow: inset 0 0 10px #CCC;
-				box-shadow: inset 0 0 10px #CCC;
-			}
-			.getCode{
-				width: 40%;
+				border-radius: 3px;
 				font-size: 16px;
-				margin-top: 20px;
-				text-align: center;
-				background-color: #0055ff;
-				height: 2em;
+				color: #000000;
 			}
 		}
 		
-									//注册-取消按钮
-		.button-LogReg{
-			width: 40%;
-			height: 35px;
-			font-size:14px;
-			margin-top: 60px;
-		}
-									//用户注册标题
-		.title {
-			margin-top: 100upx;
-			text-align: center;
-			font-size: 28px;
-			font-weight: 500;
-			margin-bottom: 100upx;
-		}
 									//输入框设置
 		input {
 			text-align: left;
 			margin-bottom: 5rpx;
 			padding-bottom: 6rpx;
 		}
-		
-		//2
-		.inputArea {
-			padding: 20upx 10%;
-		}
-		
-		.inputClass {
-			border: 2px solid #ccc;
-			border-radius: 22px;
-			outline: 0;
-			padding: 8px 15px;
-			font-size: 16px;
-			border-style: groove;
-			width: 90%;
-			background-color: #FFFFFF;
-			-moz-box-shadow: inset 0 0 10px #CCC;
-			-webkit-box-shadow: inset 0 0 10px #CCC;
-			box-shadow: inset 0 0 10px #CCC;
-		}
+	}
+	
+	// 验证码
+	.code-input{
+		flex: 1;
+		border-style: none;
+		font-weight: bold;
+	}
+	.getcode{
+		width: 3em;
+		padding-left: 3rpx;
+		font-size: 16px;
+		border-style: none  none none solid;
+		border-width: 1px;
+		border-color: #999791;
+		opacity: 0.8;
+	}
+	.eye{
+		width: 24px;
+		height: 24px;
+	}
+	
+	.input-uvie{
+		font-weight: bold;
+		font-size: 16px;
+		background-color: #FFFFFF; 
 	}
 </style>
