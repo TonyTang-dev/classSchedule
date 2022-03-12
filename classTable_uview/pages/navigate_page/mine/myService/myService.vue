@@ -1,129 +1,145 @@
 <template>
-	<view class="uni-column">
-		<view class="content" id="content" :style="{height:style.contentViewHeight+'px'}">
-			<scroll-view id="scrollview"   scroll-y="true" :style="{height:style.contentViewHeight+'px'}" :scroll-with-animation="true"
-			    :scroll-top="scrollTop">
-				<message-show v-for="(message,index) in messages" :key="index" v-bind:message="message" :id="index"></message-show>
-				<view id="bottom"></view>
-			</scroll-view>
+	<view class="content" :style="{height:heightC - 50  + 'px'}">
+		<!-- 聊天 -->
+		<view v-for="(item,idx) in chatList" :key="idx" :class="item.isself?'chatself':'chatother'">
+			<image v-if="item.isself" src="../../../../static/mine2.png"
+				style="width: 80rpx;height: 80rpx;margin-left: 20rpx; borderRadius: 50%; backgroundColor: #FFFFFF;"></image>
+			<image v-else src="../../../../static/mine1.png"
+				style="width: 80rpx;height: 80rpx;margin-right: 20rpx; borderRadius: 50%; backgroundColor: #FFFFFF;"></image>
+			<view :class="item.isself?'chatbgvS':'chatbgvO'">
+				<text style="width: 100%; height: 100%;">{{item.msg}}</text>
+			</view>
 		</view>
-		<view class="foot">
-			<chat-input @send-message="getInputMessage" ></chat-input>
+		<!-- input -->
+		<view class="chatinput">
+			<image src="../../../../static/tab_home_s.png" 
+				style="width: 80rpx;height: 80rpx;margin: 0rpx 20rpx; borderRadius: 10rpx; backgroundColor: #FFFFFF;"></image>
+			<input class="inputtext" v-model="sendContent" type="text" placeholder="输入要说的内容" />
+			<u-button @click="send" style="width: 15%; height: 60%;" text="发送"></u-button>
 		</view>
 	</view>
 </template>
 
 <script>
-	import chatInput from '@/components/chatinput.vue';
-	import messageShow from '@/components/messageshow.vue';
-
 	export default {
+
 		data() {
 			return {
-				style: {
-					pageHeight: 0,
-					contentViewHeight: 0,
-					footViewHeight: 90,
-					mitemHeight: 0,
-				},
-				scrollTop: 0,
-				messages: [{
-					user: 'home',
-					type: 'head', //input,content 
-					content: '你好!'
-				}]
-			}
+				heightC: 0,
+				sendContent: '',
+				chatList: [{
+						isself: true,
+						msg: '你好'
+					},
+					{
+						isself: false,
+						msg: '尊敬的用户：\n请问有什么可以帮到您？'
+					},
+					{
+						isself: true,
+						msg: '怎么上传照片？'
+					},
+					{
+						isself: false,
+						msg: '到主页点击上传照片即可哦！'
+					},
+					{
+						isself: true,
+						msg: '哦哦，好的，谢谢！'
+					},
+					{
+						isself: false,
+						msg: '不可气，有什么问题可继续联系我们哦！'
+					}
+				]
+			};
 		},
-		components: {
-			chatInput,
-			messageShow
-		},
-		created: function () { 
-			const res = uni.getSystemInfoSync();
-			this.style.pageHeight = res.windowHeight;
-			this.style.contentViewHeight = res.windowHeight - uni.getSystemInfoSync().screenWidth / 750 * (100); //像素
+		onLoad() {
+			this.heightC = uni.getSystemInfoSync().windowHeight - uni.getSystemInfoSync().statusBarHeight;
 		},
 		methods: {
-			getInputMessage: function (message) { //获取子组件的输入数据
-				// console.log(message);
-				this.addMessage('customer', message.content, false);
-				this.toRobot(message.content);
-			},
-			addMessage: function (user, content, hasSub, subcontent) {
-				var that = this;
-				that.messages.push({
-					user: user,
-					content: content,
-					hasSub: hasSub,
-					subcontent: subcontent
-				});
-			},
-			scrollToBottom: function () {
-				var that = this;
-				var query = uni.createSelectorQuery();
-				query.selectAll('.m-item').boundingClientRect();
-				query.select('#scrollview').boundingClientRect();
-
-				query.exec(function (res) {
-					that.style.mitemHeight = 0;
-					res[0].forEach(function (rect) {
-						// console.info(rect.height);
-						that.style.mitemHeight = that.style.mitemHeight + rect.height + 20;
-					});
-
-					if (that.style.mitemHeight > that.style.contentViewHeight) {
-						that.scrollTop = that.style.mitemHeight - that.style.contentViewHeight;
+			// 发送
+			send(){
+				if(this.sendContent==""){
+					return;
+				}
+				else{
+					var item={
+						isself: true,
+						msg: this.sendContent
 					}
-				});
-			},
-			toRobot: function (info) {
-
-				// this.addMessage('home', info, false);
-				var apiUrl = 'http://www.tuling123.com/openapi/api';
-				uni.request({
-					url: apiUrl,
-					data: {
-						"key": 'acfbca724ea1b5db96d2eef88ce677dc',
-						"info": info,
-						"userid": 'uni-test'
-					},
-					success: (res) => {
-						this.addMessage('home', res.data.text, false);
-						this.scrollToBottom();
-						console.log('request success:' + res.data.text);
-					},
-					fail: (err) => {
-						console.log('request fail', err);
-						uni.showModal({
-							content: err.errMsg,
-							showCancel: false
-						})
-					}
-				});
+					this.chatList.push(item);
+					this.sendContent='';
+				}
 			}
 		}
 	}
 </script>
 
-<style>
-	.uni-column {
-		display: flex;
-		flex-direction: column;
-	}
+<style lang="less">
 	.content {
-
-		display: flex;
-		flex: 1;
-		margin-bottom: 100px;
-		 
-	}
-	.foot {
 		position: fixed;
 		width: 100%;
-		height: 90px;
-		min-height: 90px;
-		left: 0px;
-		bottom: 0px;
-		overflow: hidden;
+		background-color: #0F0F27;
+		overflow: scroll;
+
+		.chatself {
+			display: flex;
+			flex-direction: row-reverse;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20rpx;
+			margin-bottom: 10rpx;
+		}
+
+		.chatother {
+			display: flex;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20rpx;
+			margin-bottom: 10rpx;
+		}
+
+		.chatbgvS {
+			color: #FFFFFF;
+			padding: 20rpx 40rpx;
+			max-width: calc(90% - 140rpx);
+			background-color: #0055ff;
+			font-size: 24rpx;
+			border-radius: 10px 0px 10px 10px;
+			
+		}
+
+		.chatbgvO {
+			color: #FFFFFF;
+			padding: 20rpx 40rpx;
+			max-width: calc(90% - 140rpx);
+			background-color: #292A3F; 
+			font-size: 24rpx;
+			border-radius: 0px 10px 10px 10px; 
+		}
+
+		.chatinput {
+			position: fixed;
+			bottom: 0rpx;
+			height: 50px;
+			width: 100%;
+			background-color: #15152D;
+			display: flex;
+			// justify-content: space-between;
+			align-items: center;
+
+			.inputtext {
+				width: 70%;//calc(100% - 80rpx - 50rpx - 38rpx);
+				height: 70%;
+				margin-right: 10rpx;
+				color: #FFFFFF;
+				font-size: 14px;
+				border-style: solid;
+				border-width: 1px;
+				border-color: #909399;
+				border-radius: 5px;
+			}
+		}
 	}
 </style>
