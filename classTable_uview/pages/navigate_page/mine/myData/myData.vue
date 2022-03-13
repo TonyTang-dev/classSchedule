@@ -1,6 +1,21 @@
 <template>
 	<view class="content">
-		<view class="item-wrap" v-for="i in 9" :key="i">
+		<u-cell-group>
+			<u-cell
+				v-for="(item,index) in content" :key="index"
+			    :title="item"
+				:icon="apiIcon[index]"
+				:iconStyle="{'color':iconColor[index]}"
+			    isLink
+				size="large"
+				:value="tips[index]"
+			    :url="detailUrl[index]">
+				<image v-if="index==0" slot="value" class="head-photo" src="../../../../static/head_man1.png"></image>
+				<image v-if="index==2" slot="value" class="head-photo" src="../../../../static/QRcode.png"></image>
+			</u-cell>
+		</u-cell-group>
+		
+		<!-- <view class="item-wrap" v-for="i in 9" :key="i">
 			<view class="item" @click="clickContent(i)">
 				<view class="icon-wrap">
 					<image class="arrow-icon" src="../../../../static/bank4.png"></image>
@@ -13,12 +28,12 @@
 						<image v-if="i==3" class="head-photo" src="../../../../static/QRcode.png"></image>
 					</view>
 				</view>
-				<view class="icon-wrap">
+				<view class="icon-wrap"> -->
 					<!-- <image v-if="i==1" class="head-photo" src="../../../../static/head_man1.png"></image> -->
-					<image v-if="i!=2&&i!=7" class="arrow-icon arrow" src="../../../../static/arrow.png"></image>
+					<!-- <image v-if="i!=2&&i!=7" class="arrow-icon arrow" src="../../../../static/arrow.png"></image>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -26,8 +41,13 @@
 	export default{
 		data(){
 			return{
+				apiIcon: ['info','fingerprint','server-man','chat','star','lock','info-circle','bell','setting'],
 				content: ['个人主页','我的账号','我的名片','邀请有礼','我的收藏','修改密码','我的权限','我的生日','设置',],
-				tips: ['','123456','','','','','普通用户','01-01','',]
+				tips: ['','123456','','','','','普通用户','01-01','',],
+				detailUrl: ['myHomePage/myHomePage','','myHomePage/editMyData/myCode/myCode',
+					'','./myData/myData','../../../login_regist/login/forgetPassword/forgetPassword',
+					'','',''],
+				iconColor: ['#0000ff','#ff0000','#ffaa00','#ff0000','#ff007f','#5555ff','#ffaa00','#ff0000','#ff007f','#5555ff'],
 			}
 		},
 		

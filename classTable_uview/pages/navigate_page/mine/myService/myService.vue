@@ -1,5 +1,7 @@
 <template>
-	<view class="content" :style="{height:heightC - 50  + 'px'}">
+	<view class="content"> <!-- :style="{height:heightC - 50  + 'px'}"> -->
+		<!-- 背景图片 -->
+		<image class="bgimg"></image>
 		<!-- 聊天 -->
 		<view v-for="(item,idx) in chatList" :key="idx" :class="item.isself?'chatself':'chatother'">
 			<image v-if="item.isself" src="../../../../static/mine2.png"
@@ -7,14 +9,15 @@
 			<image v-else src="../../../../static/mine1.png"
 				style="width: 80rpx;height: 80rpx;margin-right: 20rpx; borderRadius: 50%; backgroundColor: #FFFFFF;"></image>
 			<view :class="item.isself?'chatbgvS':'chatbgvO'">
-				<text style="width: 100%; height: 100%;">{{item.msg}}</text>
+				<text style="width: 100%; height: 100%;word-break: break-all;">{{item.msg}}</text>
 			</view>
 		</view>
 		<!-- input -->
 		<view class="chatinput">
 			<image src="../../../../static/tab_home_s.png" 
 				style="width: 80rpx;height: 80rpx;margin: 0rpx 20rpx; borderRadius: 10rpx; backgroundColor: #FFFFFF;"></image>
-			<input class="inputtext" v-model="sendContent" type="text" placeholder="输入要说的内容" />
+			<!-- <input class="inputtext" v-model="sendContent" type="text" placeholder="输入要说的内容" /> -->
+			<textarea class="inputtext" v-model="sendContent" type="text" placeholder="输入要说的内容" />
 			<u-button @click="send" style="width: 15%; height: 60%;" text="发送"></u-button>
 		</view>
 	</view>
@@ -77,11 +80,19 @@
 </script>
 
 <style lang="less">
-	.content {
-		position: fixed;
-		width: 100%;
+	/* 背景图片 */
+	.bgimg{
 		background-color: #0F0F27;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		/* // filter: blur(3rpx) brightness(70%);//模糊半径和变暗度 */
+	}
+	.content {
+		width: 100%;
 		overflow: scroll;
+		padding-bottom: 50px;
 
 		.chatself {
 			display: flex;
