@@ -1,4 +1,4 @@
-<template>
+﻿<template> 
 	<view class="content"> <!-- :style="{height:heightC - 50  + 'px'}"> -->
 		<!-- 背景图片 -->
 		<image class="bgimg"></image>
