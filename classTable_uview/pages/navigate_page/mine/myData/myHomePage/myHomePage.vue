@@ -14,7 +14,20 @@
 			</view>
 		</view>
 		
-		<view class="item-wrap" v-for="i in 4" :key="i">
+		<u-cell-group>
+			<u-cell
+				v-for="(item,index) in content" :key="index"
+			    :title="item"
+				:icon="apiIcon[index]"
+				:iconStyle="{'color':iconColor[index]}"
+			    isLink
+				size="large"
+				:value="tips[index]"
+			    :url="detailUrl[index]">
+			</u-cell>
+		</u-cell-group>
+		
+		<!-- <view class="item-wrap" v-for="i in 4" :key="i">
 			<view class="item" @click="clickContent(i)">
 				<view class="icon-wrap">
 					<image class="arrow-icon icon-item" src="../../../../../static/bank4.png"></image>
@@ -25,12 +38,12 @@
 						<text class="detail-text">{{tips[i-1]}}</text>
 					</view>
 				</view>
-				<view class="icon-wrap">
+				<view class="icon-wrap"> -->
 					<!-- <image v-if="i==1" class="head-photo" src="../../../../static/head_man1.png"></image> -->
-					<image class="arrow-icon" src="../../../../../static/arrow.png"></image>
+					<!-- <image class="arrow-icon" src="../../../../../static/arrow.png"></image>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -38,6 +51,11 @@
 	export default {
 		data() {
 			return {
+				apiIcon: ['info','fingerprint','server-man','chat','star','lock','info-circle','bell','setting'],
+				detailUrl: ['./mySignature/mySignature','editMyData/editMyData','myDynamic/myDynamic',
+					'editMyData/myCode/myCode'],
+				iconColor: ['#0000ff','#ff0000','#ffaa00','#ff0000','#ff007f','#5555ff','#ffaa00','#ff0000','#ff007f','#5555ff'],
+				
 				nick: "兔子一号",
 				account: 123456,
 				

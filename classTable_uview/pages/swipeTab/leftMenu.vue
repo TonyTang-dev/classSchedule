@@ -39,12 +39,24 @@
 						</view>
 						
 						<!-- 注意事项等 -->
-						<view class="appDetail">
+						<u-cell-group>
+							<u-cell
+								v-for="(item,index) in detailButton" :key="index"
+							    :title="item"
+								:icon="apiIcon[index]"
+								:iconStyle="{'color':iconColor[index]}"
+							    isLink
+								size="large"
+							    :url="detailUrl[index]">
+							</u-cell>
+						</u-cell-group>
+						
+						<!-- <view class="appDetail">
 							<view class="detailButton" v-for="i in [0,1,2,3,4]" :key="i" @click="clickDetail(i)">
 								<image class="buttonIcon" :src="buttonIcon[i]"></image>
 								<text class="buttonText">{{detailButton[i]}}</text>
 							</view>
-						</view>
+						</view> -->
 						
 						<!-- 版权 -->
 						<view class="copyright">
@@ -68,6 +80,11 @@
 		name: 'drawer',
 		data() {
 			return {
+				apiIcon: ['info','fingerprint','server-man','chat','star','lock','info-circle','bell','setting'],
+				detailUrl: ['../mine/myData/myData','../mine/shareAPP/shareAPP','../mine/aboutUs/aboutUs',
+					'../mine/myVersion/myVersion',"../mine/myService/myService"],
+				iconColor: ['#0000ff','#ff0000','#ffaa00','#ff0000','#ff007f','#5555ff','#ffaa00','#ff0000','#ff007f','#5555ff'],
+				
 				stateDrawer: false,
 				startTime: null,  // 手势滑动时间
 				startPosition: 0, // 手势进入时
