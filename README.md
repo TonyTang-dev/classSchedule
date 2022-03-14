@@ -1,5 +1,15 @@
 ﻿**项目主日志**
  
+ 0314：
+ 
+ 1、解决弹出层和侧滑菜单的问题
+ 
+ ![image](https://user-images.githubusercontent.com/81294772/158175580-b912446d-962d-451d-bdc8-576c7fd6dfbc.png)
+![image](https://user-images.githubusercontent.com/81294772/158175623-3f88b9a7-ae6d-4835-ab4a-3dcb1a5e5d93.png)
+![image](https://user-images.githubusercontent.com/81294772/158175659-64fd9cf5-0784-4a83-a93c-2c51f42be09c.png)
+
+ 
+ 
  0312：
  
  ![image](https://user-images.githubusercontent.com/81294772/158014040-4d22a9a7-b0b9-44d1-a7c1-18d974237ed8.png)
