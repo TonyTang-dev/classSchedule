@@ -4,9 +4,6 @@
  
  1、用fastAPI初步搭建出后台
  
- ![image](https://user-images.githubusercontent.com/81294772/159288836-327207c7-88cd-49d7-b7cb-d000888b8dd3.png)
-
- 
  
  0314：
  
